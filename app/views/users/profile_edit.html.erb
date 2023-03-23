@@ -11,6 +11,10 @@
       <td><%= f.label :introduction, "自己紹介" %></td>
       <td><%= f.text_field :introduction %></td>
     </tr>
+    <tr>
+      <td><%= f.label :icon, "アイコン画像" %></td>
+      <td><%= f.file_field :icon %></td>
+    </tr>
   </table>
 
   <%= link_to "キャンセル", users_profile_path %>
