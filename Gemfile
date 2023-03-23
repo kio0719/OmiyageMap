@@ -58,3 +58,4 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'rails-i18n'
 gem 'pry-rails'
+gem "aws-sdk-s3", require: false
