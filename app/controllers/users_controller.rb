@@ -19,19 +19,6 @@ class UsersController < ApplicationController
 
   def account
   end
-  
-  def account_edit
-  end
-
-  def account_update
-    if @user.update(user_params)
-      flash[:notice] = "アカウントの情報が更新されました。"
-      redirect_to users_account_path
-    else
-      flash[:warning] = "アカウントの更新に失敗しました"
-      render "account_edit"
-    end
-  end
 
   private
 
