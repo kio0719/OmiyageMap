@@ -1,0 +1,10 @@
+<h1>ユーザープロフィール</h1>
+
+<ul>
+  <li><%= @user.name %></li>
+  <li><%= @user.introduction %></li>
+</ul>
+
+<%= link_to "プロフィール編集画面", users_profile_edit_path %>
+<%= link_to "アカウント画面", users_account_path  %>
+

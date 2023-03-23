@@ -1,0 +1,14 @@
+<h1>アカウント編集画面</h1>
+
+<%= form_with model: @user, url: users_account_update_path do |f| %>
+
+  <table>
+    <tr>
+      <td><%= f.label :email, "メールアドレス" %></td>
+      <td><%= f.text_field :email %></td> 
+    </tr>
+  </table>
+
+  <%= link_to "キャンセル", users_account_path %>
+  <%= f.submit "更新" %>
+<% end %>
