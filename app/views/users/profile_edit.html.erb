@@ -2,6 +2,7 @@
 
 
 <%= form_with model: @user, url: users_profile_update_path do |f| %>
+  <%= render "shared/error", obj: @user %>
   <table>
     <tr>  
       <td><%= f.label :name, "名前" %></td>
