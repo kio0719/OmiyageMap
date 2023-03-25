@@ -10,13 +10,13 @@
     </div>
   <% end %>
   <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
     <div class="card mb-3">
       <div class="card-header">アカウント情報</div>
       <div class="card-body">
         <div class = 'form-group mb-3'>
           <%= f.label :email, "メールアドレス", class: "form-label" %>
           <%= f.email_field :email, autocomplete: "email", class: "form-control", placeholder: "xxx@email.com" %>
+          <%= render "shared/error", model: @user, attribute: :email %>
         </div>
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -24,6 +24,8 @@
         <div class="form-group mb-3">
           <%= f.label :password, "パスワード変更", class: "form-label" %><i> (変更したい場合)</i>
           <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "半角英数6文字以上" %>
+          <%= render "shared/error", model: @user, attribute: :password %>
+          <%= render "shared/error", model: @user, attribute: :password_confirmation %>
         </div>
         <div class="form-group mb-3">
           <%= f.label :password_confirmation, "パスワード変更(確認)", class: "form-label" %>
@@ -32,6 +34,7 @@
         <div class="form-group mb-3">
           <%= f.label :current_password, class: "form-label" %> <i>(変更にはパスワードが必要です)</i><br />
           <%= f.password_field :current_password, autocomplete: "current-password",class: "form-control", placeholder: "必須項目です" %>
+          <%= render "shared/error", model: @user, attribute: :current_password %>
         </div>
       </div>
     </div>
