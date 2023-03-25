@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       flash[:notice] = "プロフィールの情報が更新されました"
       redirect_to users_profile_path
     else
-      flash[:warning] = "プロフィールの更新に失敗しました"
+      flash[:alert] = "プロフィールの更新に失敗しました"
       render "profile_edit"
     end
   end
@@ -27,6 +27,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :name, :introduction, :icon)
+    params.require(:user).permit(:email, :password, :name, :introduction, :icon)
   end
 end

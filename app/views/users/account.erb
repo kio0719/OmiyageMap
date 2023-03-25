@@ -1,10 +1,12 @@
-<h1>ユーザーアカウント</h1>
+<div class="container"> 
+  <h1>ユーザーアカウント</h1>
 
-<ul>
-  <li><%= @user.email %></li>
-</ul>
+  <ul>
+    <li><%= @user.email %></li>
+  </ul>
 
-<%= link_to "アカウント編集画面へ", edit_user_registration_path %>
-<%= link_to "プロフィール画面", users_profile_path  %>
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+  <%= link_to "アカウント編集画面へ", edit_user_registration_path %>
+  <%= link_to "プロフィール画面", users_profile_path  %>
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+</div>
 

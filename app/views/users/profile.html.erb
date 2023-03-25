@@ -1,17 +1,28 @@
-<h1>ユーザープロフィール</h1>
-
-<ul>
-  <li><%= @user.name %></li>
-  <li><%= @user.introduction %></li>
-  <li>
-    <% if @user.icon %>
-      <%= image_tag @user.icon.variant(resize_to_limit: [100, 100]) %>
+<div class="container text-center">
+  <% if flash[:notice] %>
+    <div class="alert alert-info">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+  <% if flash[:alert] %>
+    <div class="alert alert-danger">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+  <div class="mb-2">
+    <% if @user.icon.attached? %>
+      <%= image_tag @user.icon.variant(resize_to_limit: [200, 200]), class: "circle-image" %>
     <% else %>
-      <%= image_tag ("default.jpg") %>
+      <%= image_tag ("icon.png"), size: '200x200', class: "circle-image"  %>
     <% end %>
-  </li>
-</ul>
-
-<%= link_to "プロフィール編集画面", users_profile_edit_path %>
-<%= link_to "アカウント画面", users_account_path  %>
-
+  </div>
+  <div class="mb-2">
+    <h2><%= @user.name %></h2>
+  </div>
+  <div class="mb-5">
+    <%= link_to "編集", users_profile_edit_path, class: "btn btn-primary" %>
+  </div>
+  <div>
+    <p><%= @user.introduction %></p>
+  </div>
+</div>

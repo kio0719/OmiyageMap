@@ -10,7 +10,9 @@
   </head>
 
   <body>
+    <%= render "shared/header" %>
     <%= yield %>
+    <%= render "shared/footer" %>
     <%= javascript_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>
