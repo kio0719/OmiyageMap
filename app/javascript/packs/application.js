@@ -7,6 +7,9 @@ import Rails from "@rails/ujs"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "../stylesheets/application"
+import './src/application.scss'
+import toastr from 'toastr'
+window.toastr = toastr
 
 Rails.start()
 Turbolinks.start()

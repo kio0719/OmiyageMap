@@ -1,14 +1,4 @@
 <div class="container text-center">
-  <% if flash[:notice] %>
-    <div class="alert alert-info">
-      <%= flash[:notice] %>
-    </div>
-  <% end %>
-  <% if flash[:alert] %>
-    <div class="alert alert-danger">
-      <%= flash[:alert] %>
-    </div>
-  <% end %>
   <div class="mb-2">
     <% if @user.icon.attached? %>
       <%= image_tag @user.icon.variant(resize_to_limit: [200, 200]), class: "circle-image" %>
