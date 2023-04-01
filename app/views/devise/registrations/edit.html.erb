@@ -25,11 +25,11 @@
           <%= f.label :password, "パスワード変更", class: "form-label" %><i> (変更したい場合)</i>
           <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "半角英数6文字以上" %>
           <%= render "shared/error", model: @user, attribute: :password %>
-          <%= render "shared/error", model: @user, attribute: :password_confirmation %>
         </div>
         <div class="form-group mb-3">
           <%= f.label :password_confirmation, "パスワード変更(確認)", class: "form-label" %>
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "再度ご入力ください" %>
+          <%= render "shared/error", model: @user, attribute: :password_confirmation %>
         </div>
         <div class="form-group mb-3">
           <%= f.label :current_password, class: "form-label" %> <i>(変更にはパスワードが必要です)</i><br />
