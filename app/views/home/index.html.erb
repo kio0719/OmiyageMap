@@ -13,7 +13,7 @@
             <div class="col-md-10 text-center text-md-start">
               <div><%= post.name %></div>
               <div><%= post.place %></div>
-              <div><%= post.updated_at %></div>
+              <div><%= post.updated_at.to_s(:datetime_jp) %></div>
             </div>
           </div>
         </div>
