@@ -8,4 +8,5 @@ class User < ApplicationRecord
   validates :introduction, length: {maximum: 500}
   
   has_one_attached :icon
+  has_many :posts
 end

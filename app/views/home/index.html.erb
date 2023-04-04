@@ -1,4 +1,27 @@
 <div class="container">
-  <h1>Home#index</h1>
-  <p>Find me in app/views/home/index.html.erb</p>
+  <% @posts.each do |post| %>
+    <%= link_to post do %>
+      <div class="card mb-5 mx-auto w-75">
+        <div class="card-header bg-transparent">
+          <div class="row">
+            <div class="col-md-2">
+              <div class="text-center">
+                <%= image_tag post.user.icon.variant(resize_to_limit: [200, 200]), class: "sm-circle-image" %>
+              </div>
+              <div class="text-center"><%= post.user.name %></div>
+            </div>
+            <div class="col-md-10 text-center text-md-start">
+              <div><%= post.name %></div>
+              <div><%= post.place %></div>
+              <div><%= post.updated_at %></div>
+            </div>
+          </div>
+        </div>
+        <div class="row m-3">
+          <div class="col-lg-6 text-center mb-lg-0 mb-3"><%= image_tag post.image.variant(resize_to_limit: [200, 200]), class: "product-image" %></div>
+          <div class="col-lg-6 text-center text-lg-start"><%= post.caption %></div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 </div>

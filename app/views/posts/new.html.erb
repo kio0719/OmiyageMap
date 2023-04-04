@@ -1,0 +1,49 @@
+<div class="container">
+  <%= form_with model: @post do |f| %>
+    <div class="card mb-3 mx-auto w-75">
+      <div class="card-header"><div class="ms-md-5">新規投稿</div></div>
+      <div class="card-body ms-md-5 mt-3">
+        <div class="row mb-5">
+          <div class="col-md-3">
+            <%= f.label :name, "商品名", class: "col-form-label" %>
+          </div>
+          <div class="col-md-8">
+            <%= f.text_field :name, autofocus: true, placeholder: "商品名", autocomplete: "name", class: "form-control" %>
+            <%= render "shared/error", model: @post, attribute: :name %>
+          </div>
+        </div>
+        <div class="row mb-5">
+          <div class="col-md-3">
+            <%= f.label :place, "場所", class: "form-label" %>
+          </div>
+          <div class="col-md-8">
+            <%= f.text_field :place, autofocus: true, placeholder: "購入した場所", class: "form-control" %>
+            <%= render "shared/error", model: @post, attribute: :place %>
+          </div>
+        </div>
+        <div class="row mb-5">
+          <div class="col-md-3"> 
+            <%= f.label :caption, "コメント", class: "form-label" %>
+          </div>
+          <div class="col-md-8">
+            <%= f.text_area :caption, placeholder: "コメント", rows: "10", class: "form-control" %>
+            <%= render "shared/error", model: @post, attribute: :caption %>
+          </div>
+        </div>
+        <div class="row mb-5">
+          <div class="col-md-3">
+            <%= f.label :image, "画像", class: "form-label" %>
+          </div>
+          <div class="col-md-8">
+            <%= f.file_field :image, class: "form-control" %>
+            <%= render "shared/error", model: @post, attribute: :image %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <div class="d-flex flex-row-reverse w-75 mx-auto">
+      <%= f.submit "投稿", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
