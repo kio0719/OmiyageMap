@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_post, only: [:show,:edit,:update,:destroy]
+  before_action :set_post, only: %i[ show edit update destroy ]
 
   def new
     @post = Post.new
@@ -24,9 +24,19 @@ class PostsController < ApplicationController
   end
 
   def update
+    if @post.update(post_params)
+      flash[:notice] = "投稿を更新しました"
+      redirect_to root_path
+    else
+      flash.now[:alert] = "投稿に失敗しました"
+      render "edit"
+    end
   end
 
   def destroy
+    @post.destroy
+    flash[:notice] = "投稿を削除しました。"
+    redirect_to root_path
   end
 
   private

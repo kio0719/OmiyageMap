@@ -13,7 +13,15 @@
             <div class="col-md-10 text-center text-md-start">
               <div><%= post.name %></div>
               <div><%= post.place %></div>
-              <div><%= post.updated_at.to_s(:datetime_jp) %></div>
+              <div class="d-flex justify-content-between">
+                <%= post.updated_at.to_s(:datetime_jp) %>
+                <% if post.user_id == current_user.id %>
+                  <div class="btn-group">
+                    <object><%= link_to "更新", [:edit, post], class: "btn btn-primary me-3" %></object>
+                    <object><%= link_to "削除", post, method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger" %></object>
+                  </div>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
