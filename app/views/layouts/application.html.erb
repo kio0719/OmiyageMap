@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>QuizSquare</title>
+    <title>おみやげ広場</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <%= render "shared/header" %>
     <%= yield %>
+    <%= render "shared/footer" %>
+    <%= javascript_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <% flash.each do |type, msg| %>
+      <% type = 'info' if type == 'notice' %>
+      <% type = 'error' if type == 'alert' %>
+      <script>
+        toastr['<%= type %>']('<%= msg %>');
+      </script>
+    <% end %>
   </body>
 </html>

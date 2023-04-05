@@ -1,0 +1,18 @@
+<div class="container text-center">
+  <div class="mb-2">
+    <% if @user.icon.attached? %>
+      <%= image_tag @user.icon.variant(resize_to_limit: [200, 200]), class: "circle-image" %>
+    <% else %>
+      <%= image_tag ("icon.png"), size: '200x200', class: "circle-image"  %>
+    <% end %>
+  </div>
+  <div class="mb-2">
+    <h2><%= @user.name %></h2>
+  </div>
+  <div class="mb-5">
+    <%= link_to "編集", users_profile_edit_path, class: "btn btn-primary" %>
+  </div>
+  <div>
+    <p><%= @user.introduction %></p>
+  </div>
+</div>

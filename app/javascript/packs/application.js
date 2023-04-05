@@ -4,10 +4,19 @@
 // that code so it'll be compiled.
 
 import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import "../stylesheets/application"
+import './src/application.scss'
+import toastr from 'toastr'
+window.toastr = toastr
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+import jquery from "jquery"
+window.$ = window.jQuery = jquery
+import * as bootstrap from "bootstrap"
+window.bootstrap = bootstrap
+import "../stylesheets/application"

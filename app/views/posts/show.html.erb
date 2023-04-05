@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="card mb-5 mx-auto">
+    <div class="row card-body">
+      <div class="col-lg-5 text-center mb-lg-0 mb-3">
+        <%= image_tag @post.image.variant(resize_to_limit: [200, 200]), class: "product-image" %>
+      </div>
+      <div class="col-lg-7">
+        <div class="row">
+          <div class="col-md-2">
+            <div class="text-center">
+              <% if @post.user.icon.attached? %>
+                <%= image_tag @post.user.icon.variant(resize_to_limit: [200, 200]), class: "sm-circle-image" %>
+              <% else %>
+                <%= image_tag ("icon.png"), size: '200x200', class: "sm-circle-image"  %>
+              <% end %>
+            </div>
+            <div class="text-center"><%= @post.user.name %></div>
+          </div>
+          <div class="col-md-10 text-center text-md-start">
+            <div><%= @post.name %></div>
+            <div><%= @post.place %></div>
+            <div><%= @post.updated_at %></div>
+          </div>
+        </div>
+        <hr>
+        <div class="col-lg-6 text-center text-lg-start"><%= @post.caption %></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <%= link_to "投稿一覧へ戻る", root_path, class: "btn btn-primary" %>
+  </div>
+</div>
