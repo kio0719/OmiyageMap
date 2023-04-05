@@ -6,7 +6,11 @@
           <div class="row">
             <div class="col-md-2">
               <div class="text-center">
-                <%= image_tag post.user.icon.variant(resize_to_limit: [200, 200]), class: "sm-circle-image" %>
+                <% if post.user.icon.attached? %>
+                  <%= image_tag post.user.icon.variant(resize_to_limit: [200, 200]), class: "sm-circle-image" %>
+                <% else %>
+                  <%= image_tag ("icon.png"), size: '200x200', class: "sm-circle-image"  %>
+                <% end %>
               </div>
               <div class="text-center"><%= post.user.name %></div>
             </div>
