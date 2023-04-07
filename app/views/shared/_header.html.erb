@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand navbar-light header-footer-bg fixed-top">
   <div class="container">
-    <%= link_to "おみやげ広場", root_path, class: "navbar-brand" %>
+    <%= link_to "おみやげ広場", root_path, class: "navbar-brand", data: { "turbolinks" => false } %>
     <ul class="navbar-nav ms-auto align-items-center">
       <li class="nav-item me-2">
-        <%= link_to "投稿", new_post_path, class: "btn btn-primary" %>
+        <%= link_to "投稿", new_post_path, class: "btn btn-primary", data: { "turbolinks" => false } %>
       </li>
       <li class="nav-item btn-group">
         <% if user_signed_in? %>
@@ -17,14 +17,14 @@
           </ul>
         <% else %>
           <ul class="navbar-nav mx-auto">
-            <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: 'me-1 nav-link' %></li>
-            <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "btn nav-link" %></li>
+            <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: 'me-1 nav-link', data: { "turbolinks" => false } %></li>
+            <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "btn nav-link", data: { "turbolinks" => false } %></li>
           </ul>
         <% end %>
         <ul class="dropdown-menu">
-          <li><%= link_to "アカウント", edit_user_registration_path, class: "dropdown-item" %></li>
-          <li><%= link_to "プロフィール", users_profile_path, class: "dropdown-item" %></li>
-          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'dropdown-item' %></li>
+          <li><%= link_to "アカウント", edit_user_registration_path, class: "dropdown-item", data: { "turbolinks" => false } %></li>
+          <li><%= link_to "プロフィール", users_profile_path, class: "dropdown-item", data: { "turbolinks" => false } %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'dropdown-item', data: { "turbolinks" => false } %></li>
         </ul>
       </li>
     </ul>

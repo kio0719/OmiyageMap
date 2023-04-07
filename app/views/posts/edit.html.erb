@@ -43,7 +43,7 @@
     </div>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <div class="d-flex justify-content-between w-75 mx-auto">
-      <%= link_to '戻る',root_path, class: "btn btn-outline-dark" %>
+      <%= link_to '戻る',root_path, class: "btn btn-outline-dark", data: { "turbolinks" => false } %>
       <%= f.submit "更新", class: "btn btn-primary" %>
     </div>
   <% end %>
