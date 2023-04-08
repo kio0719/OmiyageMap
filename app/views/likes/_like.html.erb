@@ -13,5 +13,7 @@
         <% end %>        
       </object>
     <% end %>
+  <% else %>
+    <div class="like-button"><i class="far fa-heart fa-2x" style="color: #e82a2a;"></i><span style="color: #e82a2a"><%= post.likes.count %></span></div>
   <% end %>
 </div>

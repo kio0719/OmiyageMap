@@ -15,17 +15,17 @@
             <% end %>
             <li class="nav-item"><%= current_user.name %></li>
           </ul>
+          <ul class="dropdown-menu">
+            <li><%= link_to "アカウント", edit_user_registration_path, class: "dropdown-item", data: { "turbolinks" => false } %></li>
+            <li><%= link_to "プロフィール", users_profile_path(current_user), class: "dropdown-item", data: { "turbolinks" => false } %></li>
+            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'dropdown-item', data: { "turbolinks" => false } %></li>
+          </ul>
         <% else %>
           <ul class="navbar-nav mx-auto">
             <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: 'me-1 nav-link', data: { "turbolinks" => false } %></li>
             <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "btn nav-link", data: { "turbolinks" => false } %></li>
           </ul>
         <% end %>
-        <ul class="dropdown-menu">
-          <li><%= link_to "アカウント", edit_user_registration_path, class: "dropdown-item", data: { "turbolinks" => false } %></li>
-          <li><%= link_to "プロフィール", users_profile_path, class: "dropdown-item", data: { "turbolinks" => false } %></li>
-          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'dropdown-item', data: { "turbolinks" => false } %></li>
-        </ul>
       </li>
     </ul>
   </div>

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     sessions: "users/sessions",
     registrations: "users/registrations"
   }
-  get 'users/profile', to: 'users#profile'
+  get 'users/:id/profile', to: 'users#profile', as: :users_profile
   get 'users/profile/edit', to: 'users#profile_edit'
   patch 'users/profile/update', to: 'users#profile_update'
 

@@ -8,21 +8,23 @@
         <div class="col-lg-7">
           <div class="row">
             <div class="col-md-2">
-              <div class="text-center">
-                <% if @post.user.icon.attached? %>
-                  <%= image_tag @post.user.icon.variant(resize_to_limit: [200, 200]), class: "sm-circle-image" %>
-                <% else %>
-                  <%= image_tag ("icon.png"), size: '200x200', class: "sm-circle-image"  %>
-                <% end %>
-              </div>
-              <div class="text-center"><%= @post.user.name %></div>
+              <%= link_to users_profile_path(@post.user) do %>
+                <div class="text-center">
+                  <% if @post.user.icon.attached? %>
+                    <%= image_tag @post.user.icon.variant(resize_to_limit: [200, 200]), class: "sm-circle-image" %>
+                  <% else %>
+                    <%= image_tag ("icon.png"), size: '200x200', class: "sm-circle-image"  %>
+                  <% end %>
+                </div>
+                <div class="text-center"><%= @post.user.name %></div>
+              <% end %>
             </div>
             <div class="col-md-10 text-center text-md-start">
               <div><%= @post.name %></div>
               <div><%= @post.place %></div>
               <div><%= @post.updated_at.to_s(:datetime_jp) %></div>
               <div id="likes_btn_<%= @post.id %>">
-                <%= render "shared/like", post: @post %>
+                <%= render "likes/like", post: @post %>
               </div>
             </div>
           </div>

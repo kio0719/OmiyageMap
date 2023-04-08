@@ -9,10 +9,34 @@
   <div class="mb-2">
     <h2><%= @user.name %></h2>
   </div>
+  <% if @user == current_user %>
+    <div class="mb-5">
+      <%= link_to "編集", users_profile_edit_path, class: "btn btn-primary" %>
+    </div>
+  <% end %>
   <div class="mb-5">
-    <%= link_to "編集", users_profile_edit_path, class: "btn btn-primary" %>
-  </div>
-  <div>
     <p><%= @user.introduction %></p>
+  </div>
+  <ul class="nav nav-tabs nav-fill">
+    <li class="nav-item">
+      <a href="#own_post" class="nav-link active" data-bs-toggle="tab">投稿一覧</a>
+    </li>
+    <li class="nav-item">
+      <a href="#comment" class="nav-link" data-bs-toggle="tab">コメントした投稿一覧</a>
+    </li>
+    <li class="nav-item">
+      <a href="#like" class="nav-link" data-bs-toggle="tab">いいねした投稿一覧</a>
+    </li>
+  </ul>
+  <div class="tab-content mt-5">
+    <div id="own_post" class="tab-pane fade show active">
+      <%= render "shared/post_list", posts: @posts %>
+    </div>
+    <div id="comment" class="tab-pane fade">
+      <%= render "shared/post_list", posts: @comment_posts %>
+    </div>
+    <div id="like" class="tab-pane fade">
+      <%= render "shared/post_list", posts: @like_posts %>
+    </div>
   </div>
 </div>
