@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   get 'users/profile/edit', to: 'users#profile_edit'
   patch 'users/profile/update', to: 'users#profile_update'
 
-  resources :posts, except: [:index]
+  resources :posts, except: [:index] do
+    resources :comments, only: [:create, :destroy]
+    resources :likes, only: [:create, :destroy]
+  end
 
-  post 'like/:id' => 'likes#create', as: 'create_like'
-  delete 'like/:id' => 'likes#destroy', as: 'destroy_like'
 end

@@ -1,0 +1,9 @@
+<% if user_signed_in? %>
+  <%= form_with(model: [post, comment], local: true) do |f| %>
+    <%= f.text_area :comment, placeholder: "コメントをここに", class: "form-control mb-3" %>
+    <%= render "shared/error", model: @comment, attribute: :comment %>
+    <div class="float-end">
+      <%= f.submit 'コメントする', class: "btn btn-primary" %>
+    </div>
+  <% end %>
+<% end %>

@@ -30,6 +30,13 @@
           <div class="col-lg-6 text-center text-lg-start"><%= @post.caption %></div>
         </div>
       </div>
+      <hr>
+      <div class="row">
+        <%= render "comments/form", comment: @comment, post: @post %>
+        <div id="comments_area">
+          <%= render "comments/comment", comments: @comments %>
+        </div>
+      </div>
     </div>
   </div>
   <div>

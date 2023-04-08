@@ -3,6 +3,7 @@ ja:
     models:
       user: ユーザー
       post: 投稿
+      comment: コメント
     attributes:
       user:
         name: 名前
@@ -14,3 +15,5 @@ ja:
         place: 購入した場所
         caption: コメント
         image: 商品画像
+      comment:
+        comment: コメント
