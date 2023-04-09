@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   get 'users/profile/edit', to: 'users#profile_edit'
   patch 'users/profile/update', to: 'users#profile_update'
 
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
+
   resources :posts, except: [:index] do
     resources :comments, only: [:create, :destroy]
     resources :likes, only: [:create, :destroy]

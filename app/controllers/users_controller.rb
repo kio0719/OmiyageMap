@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[ profile ]
   before_action :set_user, only: %i[ profile_edit profile_update account ]
+  before_action :ensure_normal_user, only: %i[profile_edit profile_update]
 
   def profile
     @user = User.find(params[:id])
@@ -23,6 +24,12 @@ class UsersController < ApplicationController
   end
 
   def account
+  end
+
+  def ensure_normal_user
+    if current_user.email == 'guest@example.com'
+      redirect_to root_path, alert: 'ゲストユーザーの更新・削除はできません'
+    end
   end
 
   private
