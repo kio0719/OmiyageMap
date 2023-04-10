@@ -2,34 +2,49 @@
   <div class="card mb-5 mx-auto">
     <div class="card-body">
       <div class="row">
-        <div class="col-lg-5 text-center mb-lg-0 mb-3">
-          <%= image_tag @post.image.variant(resize_to_limit: [200, 200]), class: "product-image" %>
-        </div>
-        <div class="col-lg-7">
-          <div class="row">
-            <div class="col-md-2">
-              <%= link_to users_profile_path(@post.user) do %>
-                <div class="text-center">
-                  <% if @post.user.icon.attached? %>
-                    <%= image_tag @post.user.icon.variant(resize_to_limit: [200, 200]), class: "sm-circle-image" %>
-                  <% else %>
-                    <%= image_tag ("icon.png"), size: '200x200', class: "sm-circle-image"  %>
-                  <% end %>
-                </div>
-                <div class="text-center"><%= @post.user.name %></div>
+        <div class="col-md-2">
+          <%= link_to users_profile_path(@post.user) do %>
+            <div class="text-center">
+              <% if @post.user.icon.attached? %>
+                <%= image_tag @post.user.icon.variant(resize_to_limit: [200, 200]), class: "sm-circle-image" %>
+              <% else %>
+                <%= image_tag ("icon.png"), size: '200x200', class: "sm-circle-image"  %>
               <% end %>
             </div>
-            <div class="col-md-10 text-center text-md-start">
-              <div><%= @post.name %></div>
-              <div><%= @post.place %></div>
-              <div><%= @post.updated_at.to_s(:datetime_jp) %></div>
-              <div id="likes_btn_<%= @post.id %>">
-                <%= render "likes/like", post: @post %>
-              </div>
+            <div class="text-center"><%= @post.user.name %></div>
+          <% end %>
+        </div>
+        <div class="col-md-10 text-center text-md-start">
+          <div><%= @post.name %></div>
+          <div><%= @post.address %></div>
+          <div><%= @post.updated_at.to_s(:datetime_jp) %></div>
+          <div id="likes_btn_<%= @post.id %>">
+            <%= render "likes/like", post: @post %>
+          </div>
+        </div>
+      </div>
+      <ul class="nav nav-tabs nav-fill mt-4">
+        <li class="nav-item">
+          <a href="#top" class="nav-link active" data-bs-toggle="tab">トップ</a>
+        </li>
+        <li class="nav-item">
+          <a href="#address" class="nav-link" data-bs-toggle="tab">場所</a>
+        </li>
+      </ul>
+      <div class="tab-content mt-5 mb-5">
+        <div id="top" class="tab-pane fade show active">
+          <div class="row">
+            <div class="col-lg-4 text-center mb-lg-0 mb-3">
+              <%= image_tag @post.image.variant(resize_to_limit: [200, 200]), class: "product-md-image" %>
+            </div>
+            <div class="col-lg-8 text-center text-lg-start"><%= @post.caption %></div>
+          </div>
+        </div>
+        <div id="address" class="tab-pane fade">
+          <div class="map">
+            <div id="map">
             </div>
           </div>
-          <hr>
-          <div class="col-lg-6 text-center text-lg-start"><%= @post.caption %></div>
         </div>
       </div>
       <hr>
@@ -45,3 +60,28 @@
     <%= link_to "投稿一覧へ戻る", root_path, class: "btn btn-primary", data: { "turbolinks" => false } %>
   </div>
 </div>
+<script type="text/javascript">
+function initMap() {
+  var position = {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>};
+  var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15, 
+            center: position
+            });
+  var transitLayer = new google.maps.TransitLayer();
+  transitLayer.setMap(map);
+  var contentString = '場所：<%= @post.address %>';
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+  var marker = new google.maps.Marker({
+                position:position,
+                map: map,
+                title: contentString
+              });
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
+}
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= Rails.application.credentials.api[:key] %>&callback=initMap">
+</script>

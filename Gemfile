@@ -70,3 +70,5 @@ gem "net-http"
 gem 'font-awesome-sass'
 gem 'kaminari'
 gem 'bootstrap5-kaminari-views'
+gem 'gmaps4rails'
+gem 'geocoder'

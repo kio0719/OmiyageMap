@@ -19,7 +19,7 @@ ja:
         introduction: 自己紹介
       post:
         name: 商品名
-        place: 購入した場所
+        address: 購入した場所
         caption: コメント
         image: 商品画像
       comment:

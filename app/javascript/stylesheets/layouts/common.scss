@@ -2,8 +2,15 @@ body {
   padding-top: 110px;
   padding-bottom: 110px;
 }
+html {
+  font-size: 14px;
+} 
 a {
   text-decoration: none;
+  color: grey;
+}
+a:hover{
+  color: grey;
 }
 .header-footer-bg{
   background-color: #e3f2fd;
@@ -25,6 +32,11 @@ a {
 }
 
 .product-image {
+  width: 100px;
+  height: 100px;
+  object-fit:cover;
+}
+.product-md-image{
   width: 300px;
   height: 300px;
   object-fit:cover;
