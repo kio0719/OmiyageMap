@@ -1,6 +1,6 @@
-<hr>
+
 <% comments.each do |comment| %>
-  <div class="row">
+  <div class="row border-bottom border-ash pt-3 pb-3">
     <div class="col-md-1 col-2">
       <div class="text-center">
         <% if comment.user.icon.attached? %>
@@ -23,7 +23,7 @@
       <% end %>
     </div>
   </div>
-  <hr>
+
   <div class="modal fade" id="deleteModal<%= comment.id %>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
