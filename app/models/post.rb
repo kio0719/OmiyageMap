@@ -12,4 +12,9 @@ class Post < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
+
+  ransacker :likes_count do
+    query = '(SELECT COUNT(likes.post_id) FROM likes where likes.post_id = posts.id GROUP BY likes.post_id)'
+    Arel.sql(query)
+  end
 end
