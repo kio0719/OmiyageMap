@@ -40,8 +40,8 @@
       </div>
       <div class="row m-3">
         <div class="col-lg-3 text-center mb-lg-0 mb-3">
-        <% if post.image.present? %>
-          <%= image_tag post.image.variant(resize_to_limit: [200, 200]), class: "product-image" %>
+        <% if post.images.present? %>
+          <%= image_tag post.images[0].variant(resize_to_limit: [200, 200]), class: "product-image" %>
         <% else %>
           <%= image_tag ("no_image.png"), class: "product-image" %>
         <% end %>
@@ -68,4 +68,4 @@
     </div>
   </div>
 <% end %>
-<%= paginate posts,theme: 'bootstrap-5', class: "mx-auto" %>
+<%= paginate posts,theme: 'bootstrap-5', class: "mx-auto", data: { "turbolinks" => false }  %>

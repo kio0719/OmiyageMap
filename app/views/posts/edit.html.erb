@@ -32,10 +32,10 @@
         </div>
         <div class="row mb-5">
           <div class="col-md-3">
-            <%= f.label :image, "画像", class: "form-label" %>
+            <%= f.label :images, "画像", class: "form-label" %>
           </div>
           <div class="col-md-8">
-            <%= f.file_field :image, class: "form-control" %>
+            <%= f.file_field :images, multiple: true, class: "form-control" %>
             <%= render "shared/error", model: @post, attribute: :image %>
           </div>
         </div>

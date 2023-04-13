@@ -34,14 +34,33 @@
       <div class="tab-content mt-5 pb-5 border-bottom border-ash">
         <div id="top" class="tab-pane fade show active">
           <div class="row">
-            <div class="col-lg-4 text-center mb-lg-0 mb-3">
-              <% if @post.image.present? %>
-                <%= image_tag @post.image.variant(resize_to_limit: [200, 200]), class: "product-md-image" %>
+            <div class="col-md-5 text-center mb-md-0 mb-5 mx-auto">
+              <% if @post.images.present? %>
+                <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel">
+                  <ol class="carousel-indicators">
+                    <% @post.images.each_with_index do |image, i| %>
+                      <li data-bs-target="#carouselIndicators" data-bs-slide-to="<%= i %>" class="<%= ' active' if i==0 %>" ></li>
+                    <% end %>
+                  </ol>
+                  <div class="carousel-inner">
+                    <% @post.images.each_with_index do |image, i| %>
+                      <%= image_tag image.variant(resize_to_limit: [350, 350]), class: "carousel-item w-100 h-100 product-md-image #{" active" if i == 0} " %>
+                    <% end %>
+                  </div>
+                  <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">前に戻る</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselIndicators" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">次に送る</span>
+                  </a>
+                </div>
               <% else %>
-                <%= image_tag ("no_image.png"), class: "product-md-image" %>
+                <%= image_tag ("no_image.png"), class: "product-md-image w-100 h-100" %>
               <% end %>
             </div>
-            <div class="col-lg-8 text-center text-lg-start"><%= @post.caption %></div>
+            <div class="col-md-7 text-center text-md-start"><%= @post.caption %></div>
           </div>
         </div>
         <div id="address" class="tab-pane fade">
