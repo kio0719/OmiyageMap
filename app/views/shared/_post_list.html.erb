@@ -39,7 +39,13 @@
         </div>
       </div>
       <div class="row m-3">
-        <div class="col-lg-3 text-center mb-lg-0 mb-3"><%= image_tag post.image.variant(resize_to_limit: [200, 200]), class: "product-image" %></div>
+        <div class="col-lg-3 text-center mb-lg-0 mb-3">
+        <% if post.image.present? %>
+          <%= image_tag post.image.variant(resize_to_limit: [200, 200]), class: "product-image" %>
+        <% else %>
+          <%= image_tag ("no_image.png"), class: "product-image" %>
+        <% end %>
+        </div>
         <div class="col-lg-9 text-center text-lg-start"><%= truncate(post.caption, length: 165) %></div>
       </div>
     </div>

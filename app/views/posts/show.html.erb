@@ -35,7 +35,11 @@
         <div id="top" class="tab-pane fade show active">
           <div class="row">
             <div class="col-lg-4 text-center mb-lg-0 mb-3">
-              <%= image_tag @post.image.variant(resize_to_limit: [200, 200]), class: "product-md-image" %>
+              <% if @post.image.present? %>
+                <%= image_tag @post.image.variant(resize_to_limit: [200, 200]), class: "product-md-image" %>
+              <% else %>
+                <%= image_tag ("no_image.png"), class: "product-md-image" %>
+              <% end %>
             </div>
             <div class="col-lg-8 text-center text-lg-start"><%= @post.caption %></div>
           </div>
