@@ -16,7 +16,7 @@ class HomeController < ApplicationController
           @q = Post.ransack(params[:q])
         end
       end
-      @results = @q.result.page(params[:page]).per(10)
+      @results = @q.result(distinct: true).page(params[:page]).includes([images_attachments: :blob], [user: [icon_attachment: :blob]], :likes).per(25)
       @count = @q.result.count
   end
 

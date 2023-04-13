@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[ show ]
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ edit update destroy ]
 
   def new
     @post = Post.new
@@ -18,6 +18,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.includes(images_attachments: :blob).find(params[:id])
     @comments = @post.comments.order(created_at: :desc)
     @comment = Comment.new
   end

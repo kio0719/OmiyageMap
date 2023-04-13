@@ -5,9 +5,9 @@ class UsersController < ApplicationController
 
   def profile
     @user = User.find(params[:id])
-    @posts = Post.where(user_id: @user).page(params[:page]).per(10)
-    @comment_posts = Post.includes(:comments).where( comments: { user_id: @user }).page(params[:page]).per(10)
-    @like_posts = Post.includes(:likes).where( likes: { user_id: @user }).page(params[:page]).per(10)
+    @posts = Post.where(user_id: @user).page(params[:page]).includes([images_attachments: :blob], [user: [icon_attachment: :blob]], :likes).per(25)
+    @comment_posts = Post.where( comments: { user_id: @user }).page(params[:page]).includes([images_attachments: :blob], [user: [icon_attachment: :blob]], :likes, :comments).per(25)
+    @like_posts = Post.where( likes: { user_id: @user }).page(params[:page]).includes([images_attachments: :blob], [user: [icon_attachment: :blob]], :likes).per(25)
   end
 
   def profile_edit
