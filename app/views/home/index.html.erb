@@ -9,27 +9,25 @@
     <div class="mx-auto mb-2 d-flex justify-content-center">
       <div class="row w-75">
         <div class="me-2 col-md-10 mb-md-0 mb-3">
-          <%= f.search_field :name_or_address_or_caption_or_user_name_cont_any, class: 'form-control', placeholder: '商品名、場所、投稿内容、ユーザー名' %>
+          <%= f.search_field :name_or_address_or_caption_or_user_name_cont_any, class: 'form-control', placeholder: '商品名、場所、投稿内容、ユーザー名', value: params[:q][:name_or_address_or_caption_or_user_name_cont_any] %>
         </div>
         <div class="col-md-1 mx-md-auto d-grid d-md-block">
           <%= f.submit '検索', class: 'btn btn-primary' %>
         </div>
       </div>
     </div>
-  <% end %>
-  <div class="d-flex flex-row-reverse pb-5 border-bottom border-ash">
-    <%= link_to "絞り込み検索", 'javascript:void(0)', 'data-bs-toggle': "modal", 'data-bs-target': "#detailModal" %>
-  </div>
-  <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">絞り込み検索</h5>
-          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <%= search_form_for @q, url: root_path do |f| %>
+    <div class="d-flex flex-row-reverse pb-5 border-bottom border-ash">
+      <%= link_to "絞り込み検索", 'javascript:void(0)', 'data-bs-toggle': "modal", 'data-bs-target': "#detailModal" %>
+    </div>
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">絞り込み検索</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
           <div class="modal-body mb-5">
             <%= f.label :name_cont, '商品名', class: 'col-form-label' %>
             <%= f.search_field :name_cont, class: 'form-control mb-2' %>
@@ -39,15 +37,23 @@
             <%= f.search_field :caption_cont, class: 'form-control mb-2' %>
             <%= f.label :user_name_cont, 'ユーザー名', class: 'col-form-label' %>
             <%= f.search_field :user_name_cont, class: 'form-control mb-2' %>
+            <%= f.label :created_at_gteq, '期間', class: 'col-form-label' %>
+            <%= f.date_field :created_at_gteq, class: 'form-control mb-2' %>
+            <div class="text-center">〜</div>
+            <%= f.date_field :created_at_lteq_end_of_day, class: 'form-control mb-2' %>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">やめる</button>
-            <%= f.submit '検索', class: 'btn btn-primary' %>
+          <div class="modal-footer d-flex justify-content-between">
+            <button type="button" class="btn  btn-outline-dark" data-bs-dismiss="modal">やめる</button>
+            <div class="btn-group">
+              <button type="button" class="btn btn-outline-success" id="reset-button">リセット</button>
+              <%= f.submit '詳細検索', class: 'btn btn-primary' %>
+            </div>
           </div>
-        <% end %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
   <div class="w-75 mx-auto mb-5 mt-2">全<%= @count %>件</div>
   <%= render "shared/post_list", posts: @results %>
   </div>
+  <%= javascript_pack_tag "reset" %>
