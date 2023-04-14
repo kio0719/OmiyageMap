@@ -18,6 +18,8 @@ class HomeController < ApplicationController
       end
       @results = @q.result(distinct: true).page(params[:page]).includes([images_attachments: :blob], [user: [icon_attachment: :blob]], :likes).per(25)
       @count = @q.result.count
+      @randoms = Post.includes([images_attachments: :blob], :user).where.not(images_attachments: {id: nil}).order("RAND()").limit(5)
+      @randoms_count = @randoms.count
   end
 
   private

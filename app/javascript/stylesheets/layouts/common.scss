@@ -1,6 +1,6 @@
 body { 
-  padding-top: 110px;
-  padding-bottom: 110px;
+  padding-top: 70px;
+  padding-bottom: 50px;
 }
 html {
   font-size: 14px;
@@ -17,11 +17,11 @@ a:hover{
 }
 .header-bg{
   background-color: #e3f2fd;
-
+  height: 70px;
 }
 .footer-bg{
   background-color: #e3f2fd;
-
+  height: 50px;
 }
 .circle-image {
   border-radius: 50%;
@@ -38,7 +38,6 @@ a:hover{
 .cursor-pointer{
   cursor: pointer;
 }
-
 .product-image {
   width: 100px;
   height: 100px;
@@ -49,7 +48,3 @@ a:hover{
   height: 350px;
   object-fit:cover;
 }
-.pagination {
-  justify-content: center;
-}
-
