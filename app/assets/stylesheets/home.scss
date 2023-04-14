@@ -8,8 +8,14 @@ body{
 }
 .footer-bg{
   background-color: #e3f2fd;
-  height: 50px;
+  height: 60px;
   background-image: image-url('header-footer-background-image.jpg');
+}
+#logo{
+  font-weight: bold; 
+  letter-spacing: 0.7rem;
+  font-size: 1.5rem; 
+  background: image-url('line.png') repeat-x bottom left / auto 8px;
 }
 .card{
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);

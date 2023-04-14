@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand navbar-light header-bg fixed-top">
   <div class="container">
-    <%= link_to "おみやげ広場", root_path, class: "navbar-brand", data: { "turbolinks" => false } %>
+    <%= link_to "おみやげ広場", root_path, class: "navbar-brand", id: "logo", data: { "turbolinks" => false } %>
     <ul class="navbar-nav ms-auto align-items-center">
       <% if user_signed_in? %>
         <li class="nav-item me-2">
