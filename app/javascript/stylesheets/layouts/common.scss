@@ -16,14 +16,6 @@ a:hover{
 .border-ash{
   border-color: #a5a1ad;
 }
-.header-bg{
-  background-color: #e3f2fd;
-  height: 70px;
-}
-.footer-bg{
-  background-color: #e3f2fd;
-  height: 50px;
-}
 .circle-image {
   border-radius: 50%;
   width: 200px;
@@ -42,12 +34,12 @@ a:hover{
 .product-image {
   width: 100px;
   height: 100px;
-  object-fit:cover;
+  object-fit: cover;
 }
 .product-md-image{
   width: 350px;
   height: 350px;
-  object-fit:cover;
+  object-fit: cover;
 }
 .w-85{
   width: 85%;

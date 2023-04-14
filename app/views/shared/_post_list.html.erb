@@ -1,6 +1,6 @@
 <% posts.each do |post| %>
   <%= link_to post, data: { "turbolinks" => false } do %>
-    <div class="card mb-5 w-85 mx-auto">
+    <div class="card mb-5 w-85 mx-auto <%= " ms-md-auto me-md-0" if  current_page?(root_path) %>">
       <div class="card-header bg-transparent">
         <div class="row">
           <div class="col-md-2">
