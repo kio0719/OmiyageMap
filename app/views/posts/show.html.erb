@@ -64,9 +64,14 @@
           </div>
         </div>
         <div id="address" class="tab-pane fade">
+          <p class="text-center mt-3"><%= @post.address %><p>
           <div class="map">
+            <% if @post.latitude.present? && @post.longitude.present? %>
             <div id="map">
             </div>
+            <% else %>
+              <p class="my-5 text-center">該当するお店を地図に表示できませんでした</p>
+            <% end %>
           </div>
         </div>
       </div>

@@ -14,10 +14,10 @@
         </div>
         <div class="row mb-5">
           <div class="col-md-3">
-            <%= f.label :address, "場所", class: "form-label" %>
+            <%= f.label :address, "購入したお店", class: "form-label" %>
           </div>
           <div class="col-md-8">
-            <%= f.text_field :address, autofocus: true, placeholder: "購入した場所", class: "form-control" %>
+            <%= f.text_field :address, autofocus: true, placeholder: "購入したお店", class: "form-control" %>
             <%= render "shared/error", model: @post, attribute: :address %>
           </div>
         </div>
