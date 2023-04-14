@@ -32,7 +32,8 @@
         </div>
         <div class="row mb-5">
           <div class="col-md-3">
-            <%= f.label :images, "画像", class: "form-label" %>
+            <%= f.label :images, "画像", class: "form-label mb-0" %>
+            <div class="d-inline d-md-block">（複数投稿できます）</div>
           </div>
           <div class="col-md-8">
             <%= f.file_field :images, multiple: true, class: "form-control" %>

@@ -1,6 +1,6 @@
 <div class="container text-center my-5">
   <div class="card">
-    <div class="mb-2">
+    <div class="mb-2 my-5">
       <% if @user.icon.attached? %>
         <%= image_tag @user.icon.variant(resize_to_limit: [200, 200]), class: "circle-image" %>
       <% else %>
