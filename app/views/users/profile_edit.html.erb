@@ -1,34 +1,42 @@
 <div class="container my-5"> 
   <%= form_with model: @user, url: users_profile_update_path do |f| %>
-    <div class="card mb-3">
-      <div class="card-header">プロフィール編集</div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-3 mb-3">
+    <div class="card mb-3 mx-auto w-75">
+      <div class="card-header"><div class="ms-md-5">プロフィール編集</div></div>
+      <div class="card-body ms-md-5 mt-3">
+        <div class="row mb-5">
+          <div class="col-md-3">
             <%= f.label :name, "名前", class: "form-label" %>
+          </div>
+          <div class="col-md-8">
             <%= f.text_field :name, class: "form-control #{'is-invalid' if @user.errors['name'].any? }" %>
             <%= render "shared/error", model: @user, attribute: :name %>
           </div>
         </div>
-        <div class="row">
-          <div class="col mb-3">
+        <div class="row mb-5">
+          <div class="col-md-3">
             <%= f.label :introduction, "自己紹介", class: "form-label" %>
-            <%= f.text_area :introduction, class: "form-control #{'is-invalid' if @user.errors['introduction'].any? }", rows: 5 %>
+          </div>
+          <div class="col-md-8">
+            <%= f.text_area :introduction, class: "form-control #{'is-invalid' if @user.errors['introduction'].any? }", rows: 8 %>
             <%= render "shared/error", model: @user, attribute: :introduction %>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-5 mb-3">
+        <div class="row mb-5">
+          <div class="col-md-3">
             <%= f.label :icon, "アイコン画像", class: "form-label" %>
+          </div>
+          <div class="col-md-8">
             <%= f.file_field :icon, class: "form-control #{'is-invalid' if @user.errors['icon'].any? }" %>
             <%= render "shared/error", model: @user, attribute: :icon %>
           </div>
         </div>
       </div>
     </div>
-    <div class="float-end">
-      <%= link_to "キャンセル", users_profile_path(current_user), class: "btn btn-outline-dark" %>
-      <%= f.submit "更新", class: "btn btn-primary" %>
+    <div class="d-flex justify-content-end w-75 mx-auto">
+      <div>
+        <%= link_to 'キャンセル','javascript:history.back()', class: "btn btn-outline-dark me-3", data: { "turbolinks" => false } %>
+        <%= f.submit "更新", class: "btn btn-primary" %>
+      </div>
     </div>
   <% end %>
 </div>

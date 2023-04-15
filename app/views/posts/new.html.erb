@@ -43,8 +43,11 @@
       </div>
     </div>
     <%= f.hidden_field :user_id, value: current_user.id %>
-    <div class="d-flex flex-row-reverse w-75 mx-auto">
-      <%= f.submit "投稿", class: "btn btn-primary" %>
+    <div class="d-flex justify-content-end w-75 mx-auto">
+      <div>
+        <%= link_to 'キャンセル','javascript:history.back()', class: "btn btn-outline-dark me-3", data: { "turbolinks" => false } %>
+        <%= f.submit "投稿", class: "btn btn-primary" %>
+      </div>
     </div>
   <% end %>
 </div>
