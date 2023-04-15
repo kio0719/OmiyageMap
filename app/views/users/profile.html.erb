@@ -31,13 +31,13 @@
     </ul>
     <div class="tab-content mt-5">
       <div id="own_post" class="tab-pane fade show active">
-        <%= render "shared/post_list", posts: @posts %>
+        <%= render "posts/post_list", posts: @posts %>
       </div>
       <div id="comment" class="tab-pane fade">
-        <%= render "shared/post_list", posts: @comment_posts %>
+        <%= render "posts/post_list", posts: @comment_posts %>
       </div>
       <div id="like" class="tab-pane fade">
-        <%= render "shared/post_list", posts: @like_posts %>
+        <%= render "posts/post_list", posts: @like_posts %>
       </div>
     </div>
   </div>
