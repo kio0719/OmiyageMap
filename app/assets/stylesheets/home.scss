@@ -38,7 +38,12 @@ body{
 .pagination {
   justify-content: center;
 }
-
+.blue{
+  color: #0d6efd;
+}
+.blue:hover{
+  color: #0d6efd;
+}
 @media screen and (max-width: 768px){
   .center-image{
     height: 300px;

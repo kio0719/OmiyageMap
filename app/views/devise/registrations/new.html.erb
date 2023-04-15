@@ -1,8 +1,8 @@
 <div class="container my-5">
   <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
-    <div class="card mb-3 mx-auto w-75">
+    <div class="card mb-4 mx-auto w-75">
       <div class="card-header"><div class="ms-md-5">新規登録</div></div>
-      <div class="card-body ms-md-5 mt-3">
+      <div class="card-body mx-md-3 mt-3">
         <div class="row mb-5">
           <div class="col-md-3">
             <%= f.label :name, "名前", class: "col-form-label" %>
@@ -38,6 +38,10 @@
             <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "再度ご入力ください", class: "form-control #{'is-invalid' if @user.errors['password_confirmation'].any? }" %>
             <%= render "shared/error", model: @user, attribute: :password_confirmation %>
           </div>
+        </div>
+        <hr>
+        <div class="my-3">
+          アカウントをお持ちの方は<%= link_to "ログイン", new_user_session_path, class: 'blue', data: { "turbolinks" => false } %>してください。
         </div>
       </div>
     </div>

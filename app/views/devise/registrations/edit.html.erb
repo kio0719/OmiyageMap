@@ -1,8 +1,8 @@
 <div class="container my-5">
   <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
-    <div class="card mb-3 mx-auto w-75">
+    <div class="card mb-4 mx-auto w-75">
       <div class="card-header"><div class="ms-md-5">アカウント情報</div></div>
-      <div class="card-body ms-md-5 mt-3">
+      <div class="card-body mx-md-3 mt-3">
         <div class = 'mb-4'>
           <%= f.label :email, "メールアドレス", class: "form-label" %>
           <%= f.email_field :email, autocomplete: "email", class: "form-control #{'is-invalid' if @user.errors['email'].any? }", placeholder: "xxx@email.com" %>
