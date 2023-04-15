@@ -1,4 +1,4 @@
-<div class="container mt-5"> 
+<div class="container my-5"> 
   <%= form_with model: @user, url: users_profile_update_path do |f| %>
     <div class="card mb-3">
       <div class="card-header">プロフィール編集</div>
@@ -6,21 +6,21 @@
         <div class="row">
           <div class="col-md-3 mb-3">
             <%= f.label :name, "名前", class: "form-label" %>
-            <%= f.text_field :name, class: "form-control" %>
+            <%= f.text_field :name, class: "form-control #{'is-invalid' if @user.errors['name'].any? }" %>
             <%= render "shared/error", model: @user, attribute: :name %>
           </div>
         </div>
         <div class="row">
           <div class="col mb-3">
             <%= f.label :introduction, "自己紹介", class: "form-label" %>
-            <%= f.text_area :introduction, class: "form-control", rows: 5 %>
+            <%= f.text_area :introduction, class: "form-control #{'is-invalid' if @user.errors['introduction'].any? }", rows: 5 %>
             <%= render "shared/error", model: @user, attribute: :introduction %>
           </div>
         </div>
         <div class="row">
           <div class="col-md-5 mb-3">
             <%= f.label :icon, "アイコン画像", class: "form-label" %>
-            <%= f.file_field :icon, class: "form-control" %>
+            <%= f.file_field :icon, class: "form-control #{'is-invalid' if @user.errors['icon'].any? }" %>
             <%= render "shared/error", model: @user, attribute: :icon %>
           </div>
         </div>

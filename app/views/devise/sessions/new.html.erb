@@ -8,7 +8,7 @@
             <%= f.label :email, class: "col-form-label" %>
           </div>
           <div class="col-md-8">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "xxx@email.com", class: "form-control" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "xxx@email.com", class: "form-control #{'is-invalid' if @user.errors['email'].any? }" %>
           </div>
         </div>
         <div class="row mb-5">
@@ -16,7 +16,7 @@
             <%= f.label :password, class: "col-form-label"  %>
           </div>
           <div class="col-md-8">
-            <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+            <%= f.password_field :password, autocomplete: "current-password", class: "form-control #{'is-invalid' if @user.errors['password'].any? }" %>
           </div>
         </div>
         <hr>

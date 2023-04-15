@@ -19,8 +19,8 @@ ja:
         introduction: 自己紹介
       post:
         name: 商品名
-        address: 購入した場所
-        caption: コメント
-        image: 商品画像
+        address: 購入したお店
+        caption: 感想
+        image: 画像
       comment:
         comment: コメント

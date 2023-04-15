@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container my-5">
   <%= form_with model: @post do |f| %>
     <div class="card mb-3 mx-auto w-75">
       <div class="card-header"><div class="ms-md-5">新規投稿</div></div>
@@ -8,7 +8,7 @@
             <%= f.label :name, "商品名", class: "col-form-label" %>
           </div>
           <div class="col-md-8">
-            <%= f.text_field :name, autofocus: true, placeholder: "商品名", autocomplete: "name", class: "form-control" %>
+            <%= f.text_field :name, autofocus: true, placeholder: "商品名", autocomplete: "name", class: "form-control #{'is-invalid' if @post.errors['name'].any? }" %>
             <%= render "shared/error", model: @post, attribute: :name %>
           </div>
         </div>
@@ -17,7 +17,7 @@
             <%= f.label :address, "購入したお店", class: "form-label" %>
           </div>
           <div class="col-md-8">
-            <%= f.text_field :address, autofocus: true, placeholder: "購入したお店", class: "form-control" %>
+            <%= f.text_field :address, autofocus: true, placeholder: "購入したお店", class: "form-control #{'is-invalid' if @post.errors['address'].any? }" %>
             <%= render "shared/error", model: @post, attribute: :address %>
           </div>
         </div>
@@ -26,7 +26,7 @@
             <%= f.label :caption, "感想", class: "form-label" %>
           </div>
           <div class="col-md-8">
-            <%= f.text_area :caption, placeholder: "感想", rows: "10", class: "form-control" %>
+            <%= f.text_area :caption, placeholder: "感想", rows: "10", class: "form-control #{'is-invalid' if @post.errors['caption'].any? }" %>
             <%= render "shared/error", model: @post, attribute: :caption %>
           </div>
         </div>
@@ -36,7 +36,7 @@
             <div class="d-inline d-md-block">（複数投稿できます）</div>
           </div>
           <div class="col-md-8">
-            <%= f.file_field :images, multiple: true, class: "form-control" %>
+            <%= f.file_field :images, multiple: true, class: "form-control #{'is-invalid' if @post.errors['images'].any? }" %>
             <%= render "shared/error", model: @post, attribute: :image %>
           </div>
         </div>
