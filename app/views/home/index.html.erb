@@ -1,6 +1,6 @@
 <div class="container">
   <div class="card my-5">
-    <div class="carousel-image mx-auto my-5">
+    <div class="home-carousel mx-auto my-5">
       <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel">
         <ol class="carousel-indicators">
           <% @randoms_count.times do |i| %>
@@ -10,7 +10,7 @@
         <div class="carousel-inner">
           <% @randoms.each_with_index do |post, i| %>
             <div class="carousel-item<%= " active" if i == 0 %> ">
-              <%= image_tag post.images[0].variant(resize_to_limit: [800, 500]), class: "center-image d-block w-100" %>
+              <%= image_tag post.images[0].variant(resize_to_limit: [800, 500]), class: "home-carousel-image d-block w-100" %>
               <div class="carousel-caption d-done d-md-block carousel-font-area">
                 <%= link_to post_path(post.id) do %>
                   <div class="carousel-font h3 fw-bold"><%= post.user.name %>さんの投稿</div>
@@ -49,7 +49,7 @@
             </div>
           </div>
         </div>
-        <div class="d-flex justify-content-end pb-5 border-bottom border-ash">
+        <div class="d-flex justify-content-end pb-5 border-bottom border-grey">
           <%= link_to "絞り込み検索", 'javascript:void(0)', 'data-bs-toggle': "modal", 'data-bs-target': "#detailModal" %>
         </div>
         <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">

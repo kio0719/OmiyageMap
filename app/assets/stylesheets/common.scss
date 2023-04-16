@@ -1,0 +1,105 @@
+body { 
+  padding-top: 70px;
+  padding-bottom: 60px;
+  background-image: image-url('background-image.jpg');
+  font-family: 'Shippori Mincho', serif;
+}
+html {
+  font-size: 14px;
+}
+a {
+  text-decoration: none;
+  color: grey;
+}
+a:hover{
+  color: grey;
+}
+.nav-link{
+  color: grey;
+}
+.nav-link:hover{
+  color: grey;
+}
+.blue{
+  color: #0d6efd;
+}
+.blue:hover{
+  color: #0d6efd;
+}
+.border-grey{
+  border-color: grey;
+}
+.cursor-pointer{
+  cursor: pointer;
+}
+.w-85{
+  width: 85%;
+  }
+.py-5rem{
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+.pb-5rem{
+  padding-bottom: 4rem;
+}
+.fit-content{
+  width: fit-content;
+}
+.card{
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);
+}
+.circle-image {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit:cover;
+}
+.sm-circle-image {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit:cover;
+}
+.header-bg{
+  background-image: image-url('header-footer-background-image.jpg');
+}
+.footer-bg{
+  background-color: #e3f2fd;
+  height: 60px;
+  background-image: image-url('header-footer-background-image.jpg');
+}
+#logo{
+  font-weight: bold; 
+  letter-spacing: 0.7rem;
+  font-size: 1.5rem; 
+  background: image-url('line.png') repeat-x bottom left / auto 8px;
+}
+
+@media screen and (max-width: 768px){
+  .navbar-nav{
+    --bs-nav-link-padding-y: 0.9rem;
+  }
+  .nav-collapse-design {
+    position: relative;
+    display: inline-block;
+    padding-left: 45px;
+  }
+  .nav-collapse-design:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    display: inline-block;
+    width: 25px;
+    height: 1px;
+    background-color: #8c8b8b;
+    left:0;
+  }
+}
+@media screen and (min-width: 768px){
+  .w-85-md{
+    width: 85%;
+  }
+  .nav-border-end{
+    border-right: 1px dashed #8c8b8b;
+  }
+}
