@@ -34,7 +34,7 @@
     </div>
     <div class="d-flex justify-content-end w-75 mx-auto">
       <div>
-        <%= link_to 'キャンセル','javascript:history.back()', class: "btn btn-outline-dark me-3", data: { "turbolinks" => false } %>
+        <%= link_to 'プロフィール画面に戻る', users_profile_path(current_user), class: "btn btn-outline-dark me-3", data: { "turbolinks" => false } %>
         <%= f.submit "更新", class: "btn btn-primary" %>
       </div>
     </div>
