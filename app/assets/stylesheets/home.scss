@@ -32,9 +32,7 @@ body{
   background: #e4fcff;
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);
   border-radius: 20px;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 120px;
+
 }
 .pagination {
   justify-content: center;
@@ -93,5 +91,10 @@ body{
   }  
   .w-85-md{
     width: 85%;
+  }
+  .search-box{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 120px;
   }
 }
