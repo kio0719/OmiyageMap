@@ -18,9 +18,9 @@ ja:
         icon: 画像アイコン
         introduction: 自己紹介
       post:
-        name: 商品名
+        name: おみやげ名
         address: 購入したお店
         caption: 感想
-        image: 画像
+        image: おみやげ画像
       comment:
         comment: コメント

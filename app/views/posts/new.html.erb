@@ -5,10 +5,10 @@
       <div class="card-body mx-md-3 mt-3">
         <div class="row mb-5">
           <div class="col-md-3">
-            <%= f.label :name, "商品名", class: "col-form-label" %>
+            <%= f.label :name, "おみやげ名", class: "col-form-label" %>
           </div>
           <div class="col-md-8">
-            <%= f.text_field :name, autofocus: true, placeholder: "商品名", autocomplete: "name", class: "form-control #{'is-invalid' if @post.errors['name'].any? }" %>
+            <%= f.text_field :name, autofocus: true, placeholder: "おみやげ名", autocomplete: "name", class: "form-control #{'is-invalid' if @post.errors['name'].any? }" %>
             <%= render "shared/error", model: @post, attribute: :name %>
           </div>
         </div>
@@ -23,16 +23,16 @@
         </div>
         <div class="row mb-5">
           <div class="col-md-3"> 
-            <%= f.label :caption, "感想", class: "form-label" %>
+            <%= f.label :caption, "おみやげ感想", class: "form-label" %>
           </div>
           <div class="col-md-8">
-            <%= f.text_area :caption, placeholder: "感想", rows: "10", class: "form-control #{'is-invalid' if @post.errors['caption'].any? }" %>
+            <%= f.text_area :caption, placeholder: "おみやげ感想", rows: "10", class: "form-control #{'is-invalid' if @post.errors['caption'].any? }" %>
             <%= render "shared/error", model: @post, attribute: :caption %>
           </div>
         </div>
         <div class="row mb-5">
           <div class="col-md-3">
-            <%= f.label :images, "画像", class: "form-label mb-0" %>
+            <%= f.label :images, "おみやげ画像", class: "form-label mb-0" %>
             <div class="d-inline d-md-block">（複数投稿できます）</div>
           </div>
           <div class="col-md-8">
