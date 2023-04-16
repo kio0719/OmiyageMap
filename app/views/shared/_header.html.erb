@@ -20,11 +20,29 @@
               <li><%= link_to "アカウント", edit_user_registration_path, class: "dropdown-item", data: { "turbolinks" => false } %></li>
               <li><%= link_to "プロフィール", users_profile_path(current_user), class: "dropdown-item", data: { "turbolinks" => false } %></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'dropdown-item', data: { "turbolinks" => false } %></li>
+              <li><%= link_to "退会する", 'javascript:void(0)', class: "dropdown-item", 'data-bs-toggle': "modal", 'data-bs-target': "#user-registration-destroy-modal" %></li>
             </ul>
           </li>
       </ul>
     </div>
   </nav>
+  <div class="modal fade" id="user-registration-destroy-modal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">退会確認</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">退会するとデータは完全に削除され、復元することはできません。<br>本当にアカウントを削除しますか？</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">やめる</button>
+          <%= button_to "削除", user_registration_path, method: :delete, class: "btn btn-danger" %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% else %>
   <nav class="navbar navbar-expand-md fixed-top header-bg p-3">
     <div class="container-fluid">
