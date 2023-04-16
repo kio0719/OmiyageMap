@@ -5,6 +5,7 @@
         <div class="card-header bg-transparent">
           <div class="row">
             <div class="col-md-2">
+              <div class="fit-content mx-auto">
               <object>
                 <%= link_to users_profile_path(post.user) do %>
                   <div class="text-center">
@@ -17,6 +18,7 @@
                   <div class="text-center"><%= post.user.name %></div>
                 <% end %>
               </object>
+              </div>
             </div>
             <div class="col-md-10 text-center text-md-start">
               <div><%= post.name %></div>
