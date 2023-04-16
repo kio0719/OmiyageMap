@@ -21,6 +21,9 @@ class HomeController < ApplicationController
       @randoms = Post.includes([images_attachments: :blob], :user).where.not(images_attachments: {id: nil}).order("RAND()").limit(5)
       @randoms_count = @randoms.count
   end
+  
+  def about
+  end
 
   private
 

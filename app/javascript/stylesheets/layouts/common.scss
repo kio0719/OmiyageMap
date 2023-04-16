@@ -47,9 +47,29 @@ a:hover{
   height: 350px;
   object-fit: cover;
 }
+.about-big-image{
+  max-width: 100%;
+  width: 550px;
+  height: auto;
+  object-fit: cover;
+}
+.about-small-image{
+  max-width: 100%;
+  min-width: 250px;
+  width: 250px;
+  height: auto;
+  object-fit: cover;
+}
 .w-85{
   width: 85%;
   }
+.py-5rem{
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+.pb-5rem{
+  padding-bottom: 4rem;
+}
 .fit-content{
   width: fit-content;
-  }
+}

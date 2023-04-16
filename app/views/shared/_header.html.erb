@@ -16,7 +16,7 @@
               <li class="nav-item"><%= current_user.name %></li>
             </ul>
             <ul class="dropdown-menu">
-              <li><%= link_to "おみやげ広場とは？", root_path, class: "dropdown-item", data: { "turbolinks" => false } %></li>
+              <li><%= link_to "おみやげ広場とは？", about_path, class: "dropdown-item", data: { "turbolinks" => false } %></li>
               <li><%= link_to "アカウント", edit_user_registration_path, class: "dropdown-item", data: { "turbolinks" => false } %></li>
               <li><%= link_to "プロフィール", users_profile_path(current_user), class: "dropdown-item", data: { "turbolinks" => false } %></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'dropdown-item', data: { "turbolinks" => false } %></li>
@@ -34,7 +34,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item px-md-2 nav-collapse-design nav-border-end"><%= link_to "おみやげ広場とは？", root_path, class: 'nav-link ', data: { "turbolinks" => false } %></li>
+          <li class="nav-item px-md-2 nav-collapse-design nav-border-end"><%= link_to "おみやげ広場とは？", about_path, class: 'nav-link ', data: { "turbolinks" => false } %></li>
           <li class="nav-item px-md-2 nav-collapse-design nav-border-end"><%= link_to "新規登録", new_user_registration_path, class: 'nav-link', data: { "turbolinks" => false } %></li>
           <li class="nav-item px-md-2 nav-collapse-design nav-border-end"><%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'nav-link', data: { "turbolinks" => false } %></li>
           <li class="nav-item px-md-2 nav-collapse-design"><%= link_to "ログイン", new_user_session_path, class: "nav-link", data: { "turbolinks" => false } %></li>

@@ -42,6 +42,14 @@ body{
 .blue:hover{
   color: #0d6efd;
 }
+.about-bg{
+  background-color: #fff5ee;
+}
+.about-sub-title{
+  font-size: 2em;
+  color: #7172ac;
+}
+
 @media screen and (max-width: 768px){
   .center-image{
     height: 300px;
@@ -79,5 +87,8 @@ body{
   }
   .nav-border-end{
     border-right: 1px dashed #8c8b8b;
+  }  
+  .w-85-md{
+    width: 85%;
   }
 }
