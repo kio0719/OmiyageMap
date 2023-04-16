@@ -2,8 +2,6 @@ body{
   background-image: image-url('background-image.jpg');
 }
 .header-bg{
-  background-color: #e3f2fd;
-  height: 70px;
   background-image: image-url('header-footer-background-image.jpg');
 }
 .footer-bg{
@@ -52,6 +50,24 @@ body{
   .carousel-image{
     width: 100%;
   }
+  .navbar-nav{
+    --bs-nav-link-padding-y: 0.9rem;
+  }
+  .nav-collapse-design {
+    position: relative;
+    display: inline-block;
+    padding-left: 45px;
+  }
+  .nav-collapse-design:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    display: inline-block;
+    width: 25px;
+    height: 1px;
+    background-color: #8c8b8b;
+    left:0;
+  }
 }
 @media screen and (min-width: 768px){
   .center-image{
@@ -60,5 +76,8 @@ body{
   }
   .carousel-image{
     width: 80%;
+  }
+  .nav-border-end{
+    border-right: 1px dashed #8c8b8b;
   }
 }

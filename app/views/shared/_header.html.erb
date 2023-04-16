@@ -1,31 +1,46 @@
-<nav class="navbar navbar-expand navbar-light header-bg fixed-top">
-  <div class="container">
-    <%= link_to "おみやげ広場", root_path, class: "navbar-brand", id: "logo", data: { "turbolinks" => false } %>
-    <ul class="navbar-nav ms-auto align-items-center">
-      <% if user_signed_in? %>
-        <li class="nav-item me-2">
-          <%= link_to "投稿", new_post_path, class: "btn btn-primary", data: { "turbolinks" => false } %>
-        </li>
-        <li class="nav-item btn-group">
-          <ul class="navbar-nav mx-auto dropdown-toggle d-flex align-items-center cursor-pointer" data-bs-toggle="dropdown">
-            <% if current_user.icon.attached? %>
-              <li class="nav-item"><%= image_tag current_user.icon.variant(resize_to_limit: [50, 50]), class: 'me-1 sm-circle-image'  %></li>
-            <% else %>
-              <li class="nav-item"><%= image_tag ("icon.png"), class: 'me-1 sm-circle-image' %></li>
-            <% end %>
-            <li class="nav-item"><%= current_user.name %></li>
-          </ul>
-          <ul class="dropdown-menu">
-            <li><%= link_to "アカウント", edit_user_registration_path, class: "dropdown-item", data: { "turbolinks" => false } %></li>
-            <li><%= link_to "プロフィール", users_profile_path(current_user), class: "dropdown-item", data: { "turbolinks" => false } %></li>
-            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'dropdown-item', data: { "turbolinks" => false } %></li>
-          </ul>
-        </li>
-      <% else %>
-        <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: 'me-1 nav-link', data: { "turbolinks" => false } %></li>
-        <li class="nav-item"><%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'me-1 nav-link', data: { "turbolinks" => false } %></li>
-        <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "btn nav-link", data: { "turbolinks" => false } %></li>
-      <% end %>
-    </ul>
-  </div>
-</nav>
+<% if user_signed_in? %>
+  <nav class="navbar navbar-expand fixed-top header-bg p-3">
+    <div class="container-fluid">
+      <%= link_to "おみやげ広場", root_path, class: "navbar-brand mb-3", id: "logo", data: { "turbolinks" => false } %>
+      <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item me-2">
+            <%= link_to "投稿", new_post_path, class: "btn btn-primary", data: { "turbolinks" => false } %>
+          </li>
+          <li class="nav-item btn-group">
+            <ul class="navbar-nav dropdown-toggle d-flex align-items-center cursor-pointer" data-bs-toggle="dropdown">
+              <% if current_user.icon.attached? %>
+                <li class="nav-item"><%= image_tag current_user.icon.variant(resize_to_limit: [50, 50]), class: 'me-1 sm-circle-image'  %></li>
+              <% else %>
+                <li class="nav-item"><%= image_tag ("icon.png"), class: 'me-1 sm-circle-image' %></li>
+              <% end %>
+              <li class="nav-item"><%= current_user.name %></li>
+            </ul>
+            <ul class="dropdown-menu">
+              <li><%= link_to "おみやげ広場とは？", root_path, class: "dropdown-item", data: { "turbolinks" => false } %></li>
+              <li><%= link_to "アカウント", edit_user_registration_path, class: "dropdown-item", data: { "turbolinks" => false } %></li>
+              <li><%= link_to "プロフィール", users_profile_path(current_user), class: "dropdown-item", data: { "turbolinks" => false } %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'dropdown-item', data: { "turbolinks" => false } %></li>
+            </ul>
+          </li>
+      </ul>
+    </div>
+  </nav>
+<% else %>
+  <nav class="navbar navbar-expand-md fixed-top header-bg p-3">
+    <div class="container-fluid">
+      <%= link_to "おみやげ広場", root_path, class: "navbar-brand mb-2", id: "logo", data: { "turbolinks" => false } %>
+      <button class="navbar-toggler mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="avbarNav" aria-expanded="false" aria-label="ナビゲーション切替">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item px-md-2 nav-collapse-design nav-border-end"><%= link_to "おみやげ広場とは？", root_path, class: 'nav-link ', data: { "turbolinks" => false } %></li>
+          <li class="nav-item px-md-2 nav-collapse-design nav-border-end"><%= link_to "新規登録", new_user_registration_path, class: 'nav-link', data: { "turbolinks" => false } %></li>
+          <li class="nav-item px-md-2 nav-collapse-design nav-border-end"><%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'nav-link', data: { "turbolinks" => false } %></li>
+          <li class="nav-item px-md-2 nav-collapse-design"><%= link_to "ログイン", new_user_session_path, class: "nav-link", data: { "turbolinks" => false } %></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<% end %>
+
