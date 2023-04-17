@@ -50,10 +50,10 @@
       </div>
       <ul class="nav nav-tabs nav-fill mt-4">
         <li class="nav-item">
-          <a href="#top" class="nav-link active" data-bs-toggle="tab">トップ</a>
+          <%= link_to "トップ", "#top", class: "nav-link active", "data-bs-toggle": "tab" %>
         </li>
         <li class="nav-item">
-          <a href="#address" class="nav-link" data-bs-toggle="tab">場所</a>
+          <%= link_to "場所", "#address", class: "nav-link", "data-bs-toggle": "tab" %>
         </li>
       </ul>
       <div class="tab-content mt-5 pb-5 border-bottom border-grey">
@@ -72,14 +72,14 @@
                       <%= image_tag image.variant(resize_to_limit: [350, 350]), class: "carousel-item w-100 h-100 product-md-image #{" active" if i == 0} " %>
                     <% end %>
                   </div>
-                  <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-bs-slide="prev">
+                  <%= link_to "#carouselIndicators", class: "carousel-control-prev", "data-bs-slide": "prev", role: "button" do %>
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">前に戻る</span>
-                  </a>
-                  <a class="carousel-control-next" href="#carouselIndicators" role="button" data-bs-slide="next">
+                  <% end %>
+                  <%= link_to "#carouselIndicators", class: "carousel-control-next", "data-bs-slide": "next", role: "button" do %>
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">次に送る</span>
-                  </a>
+                  <% end %>
                 </div>
               <% else %>
                 <%= image_tag ("no_image.png"), class: "product-md-image w-100 h-100" %>

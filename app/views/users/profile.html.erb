@@ -20,17 +20,17 @@
     </div>
     <ul class="nav nav-tabs nav-fill">
       <li class="nav-item">
-        <a href="#own_post" class="nav-link active" data-bs-toggle="tab">投稿一覧</a>
+        <%= link_to "投稿一覧", "#own-post", class: "nav-link active", "data-bs-toggle": "tab" %>
       </li>
       <li class="nav-item">
-        <a href="#comment" class="nav-link" data-bs-toggle="tab">コメントした投稿一覧</a>
+        <%= link_to "コメントした投稿一覧", "#comment", class: "nav-link", "data-bs-toggle": "tab" %>
       </li>
       <li class="nav-item">
-        <a href="#like" class="nav-link" data-bs-toggle="tab">いいねした投稿一覧</a>
+        <%= link_to "いいねした投稿一覧", "#like", class: "nav-link", "data-bs-toggle": "tab" %>
       </li>
     </ul>
     <div class="tab-content mt-5">
-      <div id="own_post" class="tab-pane fade show active">
+      <div id="own-post" class="tab-pane fade show active">
         <%= render "posts/post_list", posts: @posts %>
       </div>
       <div id="comment" class="tab-pane fade">
