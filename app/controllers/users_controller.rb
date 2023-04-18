@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[ profile ]
   before_action :set_user, only: %i[ profile_edit profile_update account ]
-  before_action :ensure_normal_user, only: %i[profile_edit profile_update]
+  before_action :ensure_normal_user, only: %i[ profile_update ]
 
   def profile
     @user = User.find(params[:id])

@@ -94,12 +94,18 @@ a:hover{
     background-color: #8c8b8b;
     left:0;
   }
+  .w-sm-75{
+    width: 75%;
+  }
 }
 @media screen and (min-width: 768px){
-  .w-85-md{
+  .w-md-85{
     width: 85%;
   }
   .nav-border-end{
     border-right: 1px dashed #8c8b8b;
+  }
+  .w-md-50{
+    width: 50%;
   }
 }
