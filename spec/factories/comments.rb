@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :comment do
-    comment { "MyText" }
-    user_id { 1 }
-    post_id { 1 }
+    comment { Faker::Lorem.charcters(number:20) }
+    post
+    user { post.user }
   end
 end

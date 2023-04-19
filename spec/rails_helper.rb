@@ -33,7 +33,7 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
-require 'spree/testing_support/factories'
+# require 'spree/testing_support/factories'
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
@@ -64,4 +64,6 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.include FactoryBot::Syntax::Methods
+  config.include Devise::Test::IntegrationHelpers, type: :system
+  config.include Warden::Test::Helpers
 end

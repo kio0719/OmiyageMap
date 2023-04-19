@@ -5,7 +5,7 @@
       <div class="card-body mx-md-3 mt-3">
         <div class="row mb-5">
           <div class="col-md-3">
-            <%= f.label :name, "名前", class: "col-form-label" %>
+            <%= f.label :name, class: "col-form-label" %>
           </div>
           <div class="col-md-8">
             <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control #{'is-invalid' if @user.errors['name'].any? }" %>
