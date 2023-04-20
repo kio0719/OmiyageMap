@@ -1,7 +1,7 @@
 <% if posts.present? %>
   <% posts.each do |post| %>
     <%= link_to post, data: { "turbolinks" => false } do %>
-      <div class="card mb-5 w-85 mx-auto <%= " ms-md-auto me-md-0" if  current_page?(root_path) %>">
+      <div class="post-item card mb-5 w-85 mx-auto <%= " ms-md-auto me-md-0" if  current_page?(root_path) %>">
         <div class="card-header bg-transparent">
           <div class="row">
             <div class="col-md-2">
@@ -72,6 +72,6 @@
     <% end %>
   <% end %>
 <% else %>
-  <p class="my-5">投稿が存在しません</p>
+  <p class="my-5 text-center">投稿が存在しません</p>
 <% end %>
 <%= paginate posts,theme: 'bootstrap-5', class: "mx-auto", data: { "turbolinks" => false }  %>
