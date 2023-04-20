@@ -3,17 +3,17 @@
     <% if current_user.liked_by?(post.id) %>
       <object>
         <%= link_to post_like_path(id: post.id, post_id: post.id), method: :delete, remote: true do %>
-          <div class="like-button"><i class="fas fa-heart fa-2x" style="color: #e8212a;"></i><span style="color: #e82a2a"><%= post.likes.size %></span></div>
+          <div class="like-button"><i class="fas fa-heart fa-2x like-center-color"></i><span class="like-red-color"><%= post.likes.count %></span></div>
         <% end %>      
       </object>
     <% else %>
       <object>
         <%= link_to post_likes_path(id: post.id, post_id: post.id), method: :post, remote: true do %>
-          <div class="like-button"><i class="far fa-heart fa-2x" style="color: #e82a2a;"></i><span style="color: #e82a2a"><%= post.likes.size %></span></div>
+          <div class="like-button"><i class="far fa-heart fa-2x like-red-color"></i><span class="like-red-color"><%= post.likes.count %></span></div>
         <% end %>        
       </object>
     <% end %>
   <% else %>
-    <div class="like-button"><i class="far fa-heart fa-2x" style="color: #e82a2a;"></i><span style="color: #e82a2a"><%= post.likes.size %></span></div>
+    <div class="like-button"><i class="far fa-heart fa-2x like-red-color"></i><span class="like-red-color"><%= post.likes.count %></span></div>
   <% end %>
 </div>
