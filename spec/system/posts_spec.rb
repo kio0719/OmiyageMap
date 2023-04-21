@@ -4,8 +4,8 @@ RSpec.describe "Posts", type: :system do
   let(:user) { create(:user) }
   let!(:post) { create(:post, user_id: user.id) }
   let!(:post2) { create(:post) }
-  let!(:like) { create(:like, user_id: user.id, post_id: post.id)}
- 
+  let!(:like) { create(:like, user_id: user.id, post_id: post.id) }
+
   describe 'Post CRUD処理' do
     before { sign_in user }
 
@@ -91,16 +91,16 @@ RSpec.describe "Posts", type: :system do
     end
 
     describe 'Post削除' do
-        it '投稿の削除が成功する' do
-          visit post_path(post)
+      it '投稿の削除が成功する' do
+        visit post_path(post)
+        click_on '削除'
+        within '.modal' do
           click_on '削除'
-          within '.modal' do
-            click_on '削除'
-          end
-          expect(current_path).to eq root_path
-          expect(page).to have_content '投稿を削除しました'
-          expect(page).not_to have_content post.name
         end
+        expect(current_path).to eq root_path
+        expect(page).to have_content '投稿を削除しました'
+        expect(page).not_to have_content post.name
+      end
     end
   end
 
@@ -131,7 +131,7 @@ RSpec.describe "Posts", type: :system do
           expect(page).not_to have_content post.name
         end
       end
-      
+
       context '２つ以上のキーワードを入れて検索した場合' do
         it 'どちらのキーワードも入った投稿が表示される' do
           fill_in '商品名、場所、投稿内容、ユーザー名', with: "#{post.name} #{post.address}"
@@ -180,7 +180,7 @@ RSpec.describe "Posts", type: :system do
     end
 
     describe 'ソート機能' do
-      context '新規投稿順を選択した場合' do 
+      context '新規投稿順を選択した場合' do
         it '新規投稿の投稿の昇順で表示される' do
           find("option[value='updated_at desc']").select_option
           posts = all('.post-item')

@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[ show ]
-  before_action :set_post, only: %i[ edit update destroy ]
+  skip_before_action :authenticate_user!, only: %i(show)
+  before_action :set_post, only: %i(edit update destroy)
 
   def new
     @post = Post.new

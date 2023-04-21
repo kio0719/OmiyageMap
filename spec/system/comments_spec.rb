@@ -10,7 +10,7 @@ RSpec.describe "Comments", type: :system do
       sign_in user
       visit post_path(post)
     end
-  
+
     context 'フォームの入力値が正常な場合' do
       it 'コメントの新規作成が成功する' do
         fill_in 'comment[comment]', with: 'コメントコメント'

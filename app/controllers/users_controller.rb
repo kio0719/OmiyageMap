@@ -1,13 +1,16 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[ profile ]
-  before_action :set_user, only: %i[ profile_edit profile_update account ]
-  before_action :ensure_normal_user, only: %i[ profile_update ]
+  skip_before_action :authenticate_user!, only: %i(profile)
+  before_action :set_user, only: %i(profile_edit profile_update account)
+  before_action :ensure_normal_user, only: %i(profile_update)
 
   def profile
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).includes([images_attachments: :blob], [user: [icon_attachment: :blob]], :likes).per(25)
-    @comment_posts = @user.comment_posts.page(params[:page]).includes([images_attachments: :blob], [user: [icon_attachment: :blob]], :likes, :comments).per(25)
-    @like_posts = @user.like_posts.page(params[:page]).includes([images_attachments: :blob], [user: [icon_attachment: :blob]], :likes).per(25)
+    @posts = @user.posts.page(params[:page]).includes([images_attachments: :blob], [user: [icon_attachment: :blob]],
+:likes).per(25)
+    @comment_posts = @user.comment_posts.page(params[:page]).includes([images_attachments: :blob],
+[user: [icon_attachment: :blob]], :likes, :comments).per(25)
+    @like_posts = @user.like_posts.page(params[:page]).includes([images_attachments: :blob], [user: [icon_attachment: :blob]],
+:likes).per(25)
   end
 
   def profile_edit

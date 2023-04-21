@@ -16,6 +16,6 @@ RSpec.describe User, type: :model do
       it 'falseを返すこと' do
         expect(user.liked_by?(post2.id)).to be_falsey
       end
-    end 
+    end
   end
 end

@@ -1,13 +1,12 @@
 class Post < ApplicationRecord
-
   belongs_to :user
   has_many_attached :images, dependent: :destroy
-  has_many :likes, -> {order(created_at: :desc)}, dependent: :destroy
+  has_many :likes, -> { order(created_at: :desc) }, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  validates :name, presence: true, length: {maximum: 20}
-  validates :address, presence: true 
-  validates :caption, presence: true, length:{maximum: 500}
+  validates :name, presence: true, length: { maximum: 20 }
+  validates :address, presence: true
+  validates :caption, presence: true, length: { maximum: 500 }
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?

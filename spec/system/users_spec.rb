@@ -53,7 +53,7 @@ RSpec.describe "Users", type: :system do
           sign_in user
           visit users_profile_edit_path
         end
-       
+
         context 'フォームが正常に入力された場合' do
           it 'プロフィール編集が成功する' do
             fill_in '名前', with: 'test2'
@@ -70,7 +70,7 @@ RSpec.describe "Users", type: :system do
             expect(current_path).to eq users_profile_update_path
             expect(page).to have_content 'プロフィールの更新に失敗しました'
           end
-        end 
+        end
       end
 
       describe 'アカウント情報編集' do
@@ -86,7 +86,7 @@ RSpec.describe "Users", type: :system do
             fill_in 'パスワード変更(確認)', with: 'password2'
             fill_in '現在のパスワード', with: user.password
             click_on '変更する'
-            expect(current_path).to eq  edit_user_registration_path
+            expect(current_path).to eq edit_user_registration_path
             expect(page).to have_content 'アカウント情報を変更しました'
           end
         end

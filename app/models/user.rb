@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :name, presence: true, length: {maximum: 20}
-  validates :introduction, length: {maximum: 500}
-  
+  validates :name, presence: true, length: { maximum: 20 }
+  validates :introduction, length: { maximum: 500 }
+
   has_one_attached :icon
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -18,7 +18,7 @@ class User < ApplicationRecord
     likes.where(post_id: post_id).exists?
   end
 
-  def self.guest 
+  def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.password_confirmation = user.password
