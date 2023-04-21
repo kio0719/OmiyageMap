@@ -10,10 +10,98 @@
     <div class="mb-2">
       <h2><%= @user.name %></h2>
     </div>
+    <div class="mb-2">
+      <span><%= link_to "#{@followers_num}フォロワー", 'javascript:void(0)', 'data-bs-toggle': "modal", 'data-bs-target': "#followersModal" %></span>　
+      <span><%= link_to "#{@followings_num}フォロー中", 'javascript:void(0)', 'data-bs-toggle': "modal", 'data-bs-target': "#followingsModal" %></span>
+    </div>
+    <div class="modal fade" id="followersModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">フォロワー一覧</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <% if @followers_num != 0 %>
+            <div class="modal-body py-0">
+              <% @followers.each_with_index do |follower, i| %>
+                <%= link_to users_profile_path(follower), data: { "turbolinks" => false } do %>
+                  <div class="row align-items-center p-3 <%= " border-b-grey" if i != @followers_num - 1 %>">
+                    <div class="col-2 text-center">
+                      <% if follower.icon.attached? %>
+                        <%= image_tag follower.icon.variant(resize_to_limit: [200, 200]), class: "sm-circle-image" %>
+                      <% else %>
+                        <%= image_tag ("icon.png"), size: '200x200', class: "sm-circle-image"  %>
+                      <% end %>
+                    </div>
+                    <div class="col-10 text-start"><%= follower.name %></div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="modal-body">
+              現在フォローワーはいません
+            </div>
+          <% end %>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">戻る</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="followingsModal" tabindex="-1" role="dialog" aria-labelledby="1111" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">フォロー中一覧</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <% if @followings_num != 0 %>
+            <div class="modal-body py-0">
+              <% @followings.each_with_index do |following, i| %>
+                <%= link_to users_profile_path(following), data: { "turbolinks" => false } do %>
+                  <div class="row align-items-center p-3 <%= " border-b-grey" if i != @followings_num - 1 %>">
+                    <div class="col-2 text-center">
+                      <% if following.icon.attached? %>
+                        <%= image_tag following.icon.variant(resize_to_limit: [200, 200]), class: "sm-circle-image" %>
+                      <% else %>
+                        <%= image_tag ("icon.png"), size: '200x200', class: "sm-circle-image"  %>
+                      <% end %>
+                    </div>
+                    <div class="col-10 text-start"><%= following.name %></div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="modal-body">
+              現在フォローしているユーザーはいません
+            </div>
+          <% end %>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">戻る</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <% if @user == current_user %>
       <div class="mb-5">
         <%= link_to "編集", users_profile_edit_path, class: "btn btn-primary" %>
       </div>
+    <% else %>
+      <% if user_signed_in? %>
+        <div class="mb-5">
+          <% if @user.followed_by?(current_user) %>
+            <%= link_to "フォロー済み", user_relationships_path(@user.id), method: :delete, class: "btn btn-primary" %>
+          <% else %>
+            <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
     <div class="mb-5">
       <p><%= @user.introduction %></p>

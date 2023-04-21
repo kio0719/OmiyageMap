@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page]).includes([images_attachments: :blob], [user: [icon_attachment: :blob]],
 :likes).per(25)
+    @followings = @user.followings.includes(icon_attachment: :blob)
+    @followings_num = @followings.count
+    @followers = @user.followers.includes(icon_attachment: :blob)
+    @followers_num = @followers.count
     @comment_posts = @user.comment_posts.page(params[:page]).includes([images_attachments: :blob],
 [user: [icon_attachment: :blob]], :likes, :comments).per(25)
     @like_posts = @user.like_posts.page(params[:page]).includes([images_attachments: :blob], [user: [icon_attachment: :blob]],

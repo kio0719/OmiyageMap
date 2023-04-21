@@ -13,9 +13,17 @@ class User < ApplicationRecord
   has_many :like_posts, through: :likes, source: :post
   has_many :comments, dependent: :destroy
   has_many :comment_posts, through: :comments, source: :post
+  has_many :active_relationships, class_name: "Relationship", foreign_key: :following_id, dependent: :destroy
+  has_many :followings, through: :active_relationships, source: :follower
+  has_many :passive_relationships, class_name: "Relationship", foreign_key: :follower_id, dependent: :destroy
+  has_many :followers, through: :passive_relationships, source: :following
 
   def liked_by?(post_id)
-    likes.where(post_id: post_id).exists?
+    likes.where(post_id: post_id).present?
+  end
+
+  def followed_by?(user)
+    passive_relationships.find_by(following_id: user.id).present?
   end
 
   def self.guest
