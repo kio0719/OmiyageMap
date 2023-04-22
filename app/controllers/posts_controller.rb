@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  skip_before_action :authenticate_user!
-  before_action :set_post, only: %i[ show edit update destroy ]
+  skip_before_action :authenticate_user!, only: %i(show)
+  before_action :set_post, only: %i(edit update destroy)
 
   def new
     @post = Post.new
@@ -8,6 +8,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
     if @post.save
       flash[:notice] = "投稿しました"
       redirect_to root_path
@@ -18,6 +19,9 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.includes(images_attachments: :blob).find(params[:id])
+    @comments = @post.comments.order(created_at: :desc)
+    @comment = Comment.new
   end
 
   def edit
@@ -46,6 +50,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:name, :caption, :place, :image, :user_id)
+    params.require(:post).permit(:name, :caption, :address, :user_id, :latitude, :longitude, images: [])
   end
 end

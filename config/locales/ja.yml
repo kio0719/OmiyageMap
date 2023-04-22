@@ -1,8 +1,16 @@
 ja:
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."
   activerecord:
     models:
       user: ユーザー
       post: 投稿
+      comment: コメント
     attributes:
       user:
         name: 名前
@@ -10,7 +18,9 @@ ja:
         icon: 画像アイコン
         introduction: 自己紹介
       post:
-        name: 商品名
-        place: 購入した場所
-        caption: コメント
-        image: 商品画像
+        name: おみやげ名
+        address: 購入したお店
+        caption: 感想
+        image: おみやげ画像
+      comment:
+        comment: コメント

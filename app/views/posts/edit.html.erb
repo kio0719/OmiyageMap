@@ -1,50 +1,51 @@
-<div class="container">
+<div class="container my-5">
   <%= form_with model: @post do |f| %>
-    <div class="card mb-3 mx-auto w-75">
+    <div class="card mb-4 mx-auto w-75">
       <div class="card-header"><div class="ms-md-5">投稿更新</div></div>
-      <div class="card-body ms-md-5 mt-3">
+      <div class="card-body mx-md-3 mt-3">
         <div class="row mb-5">
           <div class="col-md-3">
-            <%= f.label :name, "商品名", class: "col-form-label" %>
+            <%= f.label :name, "おみやげ名", class: "col-form-label" %>
           </div>
           <div class="col-md-8">
-            <%= f.text_field :name, autofocus: true, placeholder: "商品名", autocomplete: "name", class: "form-control" %>
+            <%= f.text_field :name, autofocus: true, placeholder: "おみやげ名", autocomplete: "name", class: "form-control #{'is-invalid' if @post.errors['name'].any? }" %>
             <%= render "shared/error", model: @post, attribute: :name %>
           </div>
         </div>
         <div class="row mb-5">
           <div class="col-md-3">
-            <%= f.label :place, "場所", class: "form-label" %>
+            <%= f.label :address, "購入したお店", class: "form-label" %>
           </div>
           <div class="col-md-8">
-            <%= f.text_field :place, autofocus: true, placeholder: "購入した場所", class: "form-control" %>
-            <%= render "shared/error", model: @post, attribute: :place %>
+            <%= f.text_field :address, autofocus: true, placeholder: "購入したお店", class: "form-control #{'is-invalid' if @post.errors['address'].any? }" %>
+            <%= render "shared/error", model: @post, attribute: :address %>
           </div>
         </div>
         <div class="row mb-5">
           <div class="col-md-3"> 
-            <%= f.label :caption, "コメント", class: "form-label" %>
+            <%= f.label :caption, "おみやげ感想", class: "form-label" %>
           </div>
           <div class="col-md-8">
-            <%= f.text_area :caption, placeholder: "コメント", rows: "10", class: "form-control" %>
+            <%= f.text_area :caption, placeholder: "おみやげ感想", rows: "10", class: "form-control #{'is-invalid' if @post.errors['caption'].any? }" %>
             <%= render "shared/error", model: @post, attribute: :caption %>
           </div>
         </div>
         <div class="row mb-5">
           <div class="col-md-3">
-            <%= f.label :image, "画像", class: "form-label" %>
+            <%= f.label :images, "おみやげ画像", class: "form-label" %>
           </div>
           <div class="col-md-8">
-            <%= f.file_field :image, class: "form-control" %>
+            <%= f.file_field :images, multiple: true, class: "form-control #{'is-invalid' if @post.errors['images'].any? }" %>
             <%= render "shared/error", model: @post, attribute: :image %>
           </div>
         </div>
       </div>
     </div>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <div class="d-flex justify-content-between w-75 mx-auto">
-      <%= link_to '戻る',root_path, class: "btn btn-outline-dark" %>
-      <%= f.submit "更新", class: "btn btn-primary" %>
+    <div class="d-flex justify-content-end w-75 mx-auto">
+      <div>
+        <%= link_to '投稿一覧へ戻る',root_path, class: "btn btn-outline-dark me-3", data: { "turbolinks" => false } %>
+        <%= f.submit "更新", class: "btn btn-primary" %>
+      </div>
     </div>
   <% end %>
 </div>

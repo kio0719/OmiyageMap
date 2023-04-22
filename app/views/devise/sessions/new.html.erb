@@ -1,14 +1,14 @@
-<div class="container">
+<div class="container my-5">
   <%= form_with model: @user, url: user_session_path, local: true do |f| %>
-    <div class="card mb-3 mx-auto w-75">
+    <div class="card mb-4 mx-auto w-75">
       <div class="card-header"><div class="ms-md-5">ログイン</div></div>
-      <div class="card-body ms-md-5 mt-3">
+      <div class="card-body mx-md-3 mt-3">
         <div class="row mb-5">
           <div class="col-md-3">
             <%= f.label :email, class: "col-form-label" %>
           </div>
           <div class="col-md-8">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "xxx@email.com", class: "form-control" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "xxx@email.com", class: "form-control #{'is-invalid' if @user.errors['email'].any? }" %>
           </div>
         </div>
         <div class="row mb-5">
@@ -16,7 +16,7 @@
             <%= f.label :password, class: "col-form-label"  %>
           </div>
           <div class="col-md-8">
-            <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+            <%= f.password_field :password, autocomplete: "current-password", class: "form-control #{'is-invalid' if @user.errors['password'].any? }" %>
           </div>
         </div>
         <hr>
@@ -26,6 +26,10 @@
             <%= f.label :remember_me %>
           </div>
         <% end %>
+        <div class="my-2">
+          アカウントをお持ちでない方は<%= link_to "登録", new_user_registration_path, class: 'blue', data: { "turbolinks" => false } %>を行うか、
+          <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'blue', data: { "turbolinks" => false } %>をお使いください。
+        </div>
       </div>
     </div>
     <div class="d-flex flex-row-reverse w-75 mx-auto">

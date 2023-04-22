@@ -1,3 +1,62 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.carousel-font-area{
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+}
+.carousel-font{
+  color: #000000;
+}
+.search-box{
+  max-height: 350px;
+  padding: 0.5rem 1rem;
+  border: double 5px #4ec4d3;
+  background: #e4fcff;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);
+  border-radius: 20px;
+}
+.pagination {
+  justify-content: center;
+}
+.about-bg{
+  background-color: #fff5ee;
+}
+.about-sub-title{
+  font-size: 2em;
+  color: #7172ac;
+}
+.about-big-image{
+  max-width: 100%;
+  width: 550px;
+  height: auto;
+  object-fit: cover;
+}
+.about-small-image{
+  max-width: 100%;
+  min-width: 250px;
+  width: 250px;
+  height: auto;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 768px){
+  .home-carousel{
+    width: 100%;
+  }
+  .home-carousel-image{
+    height: 300px;
+    object-fit: cover;
+  }
+}
+@media screen and (min-width: 768px){
+  .home-carousel{
+    width: 80%;
+  }
+  .home-carousel-image{
+    height: 500px;
+    object-fit: cover;
+  }
+  .search-box{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 120px;
+  }
+}
