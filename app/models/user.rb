@@ -22,8 +22,8 @@ class User < ApplicationRecord
     likes.where(post_id: post_id).present?
   end
 
-  def followed_by?(user)
-    passive_relationships.find_by(following_id: user.id).present?
+  def followed_by?(user_id)
+    passive_relationships.find_by(following_id: user_id).present?
   end
 
   def self.guest

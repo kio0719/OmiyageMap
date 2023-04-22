@@ -95,7 +95,7 @@
     <% else %>
       <% if user_signed_in? %>
         <div class="mb-5">
-          <% if @user.followed_by?(current_user) %>
+          <% if @user.followed_by?(current_user.id) %>
             <%= link_to "フォロー済み", user_relationships_path(@user.id), method: :delete, class: "btn btn-primary" %>
           <% else %>
             <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-primary" %>
