@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 class Post < ActiveRecord::Base
-=======
-class Post < ApplicationRecord
->>>>>>> 04e63b9e0bafcbeae44a7b9975603a1434e938d8
   extend Geocoder::Model::ActiveRecord
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
