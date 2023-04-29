@@ -2,7 +2,7 @@
   <div class="card">
     <div class="mb-2 my-5">
       <% if @user.icon.attached? %>
-        <%= image_tag @user.icon.variant(resize_to_limit: [200, 200]), class: "circle-image" %>
+        <%= image_tag cdn_image_url(@user.icon.variant(resize_to_limit: [200, 200])), class: "circle-image" %>
       <% else %>
         <%= image_tag ("icon.png"), size: '200x200', class: "circle-image"  %>
       <% end %>
@@ -30,7 +30,7 @@
                   <div class="row align-items-center p-3 <%= " border-b-grey" if i != @followers_num - 1 %>">
                     <div class="col-2 text-center">
                       <% if follower.icon.attached? %>
-                        <%= image_tag follower.icon.variant(resize_to_limit: [200, 200]), class: "sm-circle-image" %>
+                        <%= image_tag cdn_image_url(follower.icon.variant(resize_to_limit: [200, 200])), class: "sm-circle-image" %>
                       <% else %>
                         <%= image_tag ("icon.png"), size: '200x200', class: "sm-circle-image"  %>
                       <% end %>
@@ -67,7 +67,7 @@
                   <div class="row align-items-center p-3 <%= " border-b-grey" if i != @followings_num - 1 %>">
                     <div class="col-2 text-center">
                       <% if following.icon.attached? %>
-                        <%= image_tag following.icon.variant(resize_to_limit: [200, 200]), class: "sm-circle-image" %>
+                        <%= image_tag cdn_image_url(following.icon.variant(resize_to_limit: [200, 200])), class: "sm-circle-image" %>
                       <% else %>
                         <%= image_tag ("icon.png"), size: '200x200', class: "sm-circle-image"  %>
                       <% end %>

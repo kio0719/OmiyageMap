@@ -3,7 +3,7 @@
     <div class="col-md-1 col-2">
       <div class="text-center">
         <% if comment.user.icon.attached? %>
-          <%= image_tag comment.user.icon.variant(resize_to_limit: [200, 200]), class: "sm-circle-image" %>
+          <%= image_tag cdn_image_url(comment.user.icon.variant(resize_to_limit: [200, 200])), class: "sm-circle-image" %>
         <% else %>
           <%= image_tag ("icon.png"), size: '200x200', class: "sm-circle-image"  %>
         <% end %>

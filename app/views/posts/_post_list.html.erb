@@ -10,7 +10,7 @@
                 <%= link_to users_profile_path(post.user) do %>
                   <div class="text-center">
                     <% if post.user.icon.attached? %>
-                      <%= image_tag post.user.icon.variant(resize_to_limit: [200, 200]), class: "sm-circle-image" %>
+                      <%= image_tag cdn_image_url(post.user.icon.variant(resize_to_limit: [200, 200])), class: "sm-circle-image" %>
                     <% else %>
                       <%= image_tag ("icon.png"), size: '200x200', class: "sm-circle-image"  %>
                     <% end %>
@@ -44,7 +44,7 @@
         <div class="row m-3">
           <div class="col-lg-3 text-center mb-lg-0 mb-3">
           <% if post.images.present? %>
-            <%= image_tag post.images[0].variant(resize_to_limit: [200, 200]), class: "product-image" %>
+            <%= image_tag cdn_image_url(post.images[0].variant(resize_to_limit: [200, 200])), class: "product-image" %>
           <% else %>
             <%= image_tag ("no_image.png"), class: "product-image" %>
           <% end %>
