@@ -6,7 +6,7 @@
           <%= link_to users_profile_path(@post.user) do %>
             <div class="text-center">
               <% if @post.user.icon.attached? %>
-                <%= image_tag @post.user.icon.variant(resize_to_limit: [200, 200]), class: "sm-circle-image" %>
+                <%= image_tag cdn_image_url(@post.user.icon.variant(resize_to_limit: [200, 200])), class: "sm-circle-image" %>
               <% else %>
                 <%= image_tag ("icon.png"), size: '200x200', class: "sm-circle-image"  %>
               <% end %>
@@ -69,7 +69,7 @@
                   </ol>
                   <div class="carousel-inner">
                     <% @post.images.each_with_index do |image, i| %>
-                      <%= image_tag image.variant(resize_to_limit: [350, 350]), class: "carousel-item w-100 h-100 product-md-image #{" active" if i == 0} " %>
+                      <%= image_tag cdn_image_url(image.variant(resize_to_limit: [350, 350])), class: "carousel-item w-100 h-100 product-md-image #{" active" if i == 0}" %>
                     <% end %>
                   </div>
                   <%= link_to "#carouselIndicators", class: "carousel-control-prev", "data-bs-slide": "prev", role: "button" do %>
@@ -95,7 +95,7 @@
             <div id="map">
             </div>
             <% else %>
-              <p class="my-5 text-center">該当するお店を地図に表示できませんでした</p>
+              <p class="my-5 text-center">該当するお店がありませんでした</p>
             <% end %>
           </div>
         </div>

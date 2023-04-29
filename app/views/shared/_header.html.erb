@@ -9,7 +9,7 @@
           <li class="nav-item btn-group">
             <ul class="navbar-nav dropdown-toggle d-flex align-items-center cursor-pointer" data-bs-toggle="dropdown">
               <% if current_user.icon.attached? %>
-                <li class="nav-item"><%= image_tag current_user.icon.variant(resize_to_limit: [50, 50]), class: 'me-1 sm-circle-image'  %></li>
+                <li class="nav-item"><%= image_tag cdn_image_url(current_user.icon.variant(resize_to_limit: [50, 50])), class: 'me-1 sm-circle-image' %></li>
               <% else %>
                 <li class="nav-item"><%= image_tag ("icon.png"), size: "50x50", class: 'me-1 sm-circle-image' %></li>
               <% end %>
