@@ -1,0 +1,54 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      - image: cimg/ruby:2.7.7-node
+        environment:
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+          RAILS_ENV: test
+      - image: circleci/mysql:5.7
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_ROOT_PASSWORD: ''
+    steps:
+      - checkout
+      - run:
+          name: "setup bundler"
+          command: |
+            gem install bundler:2.4.4
+            bundle -v
+      - restore_cache:
+          keys:
+            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-demo-bundle-v2-
+      - run:
+          name: "bundle install"
+          no_output_timeout: 30m
+          command: bundle install --path vendor/bundle
+      - save_cache: 
+          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - run:
+          name: "wait database" 
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+      - run:
+          name: "initialise DB"
+          command: |
+            bundle exec rails db:create
+            bundle exec rails db:migrate
+      - run:
+          name: Run rubocop
+          command: bundle exec rubocop --parallel
+      - run:
+          name: RSpec
+          command: bundle exec rspec
+
+workflows:
+  version: 2.1
+  workflows:
+    jobs:
+      - test
