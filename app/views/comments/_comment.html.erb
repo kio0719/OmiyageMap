@@ -19,13 +19,13 @@
       </div>
       <div><%= comment.comment %></div>
       <% if comment.user == current_user %>
-        <div class="comment_delete d-flex flex-row-reverse">
-          <%= link_to "削除", 'javascript:void(0)', 'data-bs-toggle': "modal", 'data-bs-target': "#deleteModal#{comment.id}" %>
+        <div class="comment_btn d-flex flex-row-reverse">
+          <%= link_to "削除", 'javascript:void(0)', 'data-bs-toggle': "modal", 'data-bs-target': "#CommentdeleteModal#{comment.id}" %>
         </div>
       <% end %>
     </div>
   </div>
-  <div class="modal fade" id="deleteModal<%= comment.id %>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal fade comment_delete_modal" id="CommentdeleteModal<%= comment.id %>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">

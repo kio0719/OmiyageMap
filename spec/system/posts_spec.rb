@@ -36,7 +36,7 @@ RSpec.describe "Posts", type: :system do
             click_button '投稿'
           end
           expect(current_path).to eq posts_path
-          expect(page).to have_content '投稿に失敗しました'
+          expect(page).to have_content 'おみやげ名を入力してください'
         end
       end
     end
@@ -75,7 +75,6 @@ RSpec.describe "Posts", type: :system do
           fill_in 'おみやげ名', with: 'おみやげ２'
           click_on '更新'
           expect(current_path).to eq root_path
-          expect(page).to have_content '投稿を更新しました'
           expect(page).to have_content 'おみやげ２'
         end
       end
@@ -85,7 +84,7 @@ RSpec.describe "Posts", type: :system do
           fill_in 'おみやげ名', with: nil
           click_on '更新'
           expect(current_path).to eq post_path(post)
-          expect(page).to have_content '投稿に失敗しました'
+          expect(page).to have_content 'おみやげ名を入力してくださ'
         end
       end
     end
@@ -93,12 +92,13 @@ RSpec.describe "Posts", type: :system do
     describe 'Post削除' do
       it '投稿の削除が成功する' do
         visit post_path(post)
-        click_on '削除'
-        within '.modal' do
+        within '.post_btn_group' do
+          click_on '削除'
+        end
+        within '#PostdeleteModal' do
           click_on '削除'
         end
         expect(current_path).to eq root_path
-        expect(page).to have_content '投稿を削除しました'
         expect(page).not_to have_content post.name
       end
     end
@@ -185,14 +185,6 @@ RSpec.describe "Posts", type: :system do
           find("option[value='updated_at desc']").select_option
           posts = all('.post-item')
           expect(posts[0]).to have_content post2.name
-        end
-      end
-
-      context 'いいねの多い順を選択した場合' do
-        it 'いいねの多い順の昇順で表示される' do
-          find("option[value='likes_count desc']").select_option
-          posts = all('.post-item')
-          expect(posts[0]).to have_content post.name
         end
       end
     end

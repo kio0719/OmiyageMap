@@ -1,52 +1,50 @@
-<div class="container my-5">
-  <%= form_with model: @post do |f| %>
-    <div class="card mb-4 mx-auto w-75">
-      <div class="card-header"><div class="ms-md-5">新規投稿</div></div>
-      <div class="card-body mx-md-3 mt-3">
-        <div class="row mb-5">
-          <div class="col-md-3">
-            <%= f.label :name, "おみやげ名", class: "col-form-label" %>
-          </div>
-          <div class="col-md-8">
-            <%= f.text_field :name, autofocus: true, placeholder: "おみやげ名", autocomplete: "name", class: "form-control #{'is-invalid' if @post.errors['name'].any? }" %>
-            <%= render "shared/error", model: @post, attribute: :name %>
-          </div>
+<%= form_with model: @post do |f| %>
+  <div class="card mb-4 mx-auto w-75">
+    <div class="card-header"><div class="ms-md-5">新規投稿</div></div>
+    <div class="card-body mx-md-3 mt-3">
+      <div class="row mb-5">
+        <div class="col-md-3">
+          <%= f.label :name, "おみやげ名", class: "col-form-label" %>
         </div>
-        <div class="row mb-5">
-          <div class="col-md-3">
-            <%= f.label :address, "購入したお店", class: "form-label" %>
-          </div>
-          <div class="col-md-8">
-            <%= f.text_field :address, autofocus: true, placeholder: "購入したお店", class: "form-control #{'is-invalid' if @post.errors['address'].any? }" %>
-            <%= render "shared/error", model: @post, attribute: :address %>
-          </div>
+        <div class="col-md-8">
+          <%= f.text_field :name, autofocus: true, placeholder: "おみやげ名", autocomplete: "name", class: "form-control #{'is-invalid' if @post.errors['name'].any? }" %>
+          <%= render "shared/error", model: @post, attribute: :name %>
         </div>
-        <div class="row mb-5">
-          <div class="col-md-3"> 
-            <%= f.label :caption, "おみやげ感想", class: "form-label" %>
-          </div>
-          <div class="col-md-8">
-            <%= f.text_area :caption, placeholder: "おみやげ感想", rows: "10", class: "form-control #{'is-invalid' if @post.errors['caption'].any? }" %>
-            <%= render "shared/error", model: @post, attribute: :caption %>
-          </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-md-3">
+          <%= f.label :address, "購入したお店", class: "form-label" %>
         </div>
-        <div class="row mb-5">
-          <div class="col-md-3">
-            <%= f.label :images, "おみやげ画像", class: "form-label mb-0" %>
-            <div class="d-inline d-md-block">（複数投稿できます）</div>
-          </div>
-          <div class="col-md-8">
-            <%= f.file_field :images, multiple: true, class: "form-control #{'is-invalid' if @post.errors['images'].any? }" %>
-            <%= render "shared/error", model: @post, attribute: :image %>
-          </div>
+        <div class="col-md-8">
+          <%= f.text_field :address, autofocus: true, placeholder: "購入したお店", class: "form-control #{'is-invalid' if @post.errors['address'].any? }" %>
+          <%= render "shared/error", model: @post, attribute: :address %>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-md-3"> 
+          <%= f.label :caption, "おみやげ感想", class: "form-label" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_area :caption, placeholder: "おみやげ感想", rows: "10", class: "form-control #{'is-invalid' if @post.errors['caption'].any? }" %>
+          <%= render "shared/error", model: @post, attribute: :caption %>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-md-3">
+          <%= f.label :images, "おみやげ画像", class: "form-label mb-0" %>
+          <div class="d-inline d-md-block">（複数投稿できます）</div>
+        </div>
+        <div class="col-md-8">
+          <%= f.file_field :images, multiple: true, class: "form-control #{'is-invalid' if @post.errors['images'].any? }" %>
+          <%= render "shared/error", model: @post, attribute: :image %>
         </div>
       </div>
     </div>
-    <div class="d-flex justify-content-end w-75 mx-auto">
-      <div class="button-group">
-        <%= link_to '投稿一覧へ戻る', root_path, class: "btn btn-outline-dark me-3", data: { "turbolinks" => false } %>
-        <%= f.submit "投稿", class: "btn btn-primary" %>
-      </div>
+  </div>
+  <div class="d-flex justify-content-end w-75 mx-auto">
+    <div class="button-group">
+      <%= link_to '投稿一覧へ戻る', root_path, class: "btn btn-outline-dark me-3", data: { "turbolinks" => false } %>
+      <%= f.submit "投稿", class: "btn btn-primary" %>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
