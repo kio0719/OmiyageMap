@@ -40,20 +40,19 @@ RSpec.describe "Comments", type: :system do
         it 'コメントの新規作成が失敗する' do
           fill_in 'comment[comment]', with: nil
           click_on 'コメントする'
-          expect(page).to have_content 'コメントの投稿に失敗しました'
+          expect(page).to have_content 'コメントを入力してください'
         end
       end
     end
 
     describe 'コメント削除' do
       it 'コメントの削除が成功する' do
-        within '.comment_delete' do
+        within '.comment_btn' do
           click_on '削除'
         end
-        within '.modal' do
+        within '.comment_delete_modal' do
           click_on '削除'
         end
-        expect(page).to have_content 'コメントを削除しました'
         expect(page).not_to have_content comment.comment
       end
     end

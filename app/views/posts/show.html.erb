@@ -23,28 +23,28 @@
               <%= render "likes/like", post: @post %>
             </div>
             <% if user_signed_in? && @post.user_id == current_user.id %>
-              <div class="ms-5 ms-md-0">
+              <div class="ms-5 ms-md-0 post_btn_group">
                 <%= link_to "更新", [:edit, @post], class: "btn btn-primary btn-sm me-md-3 me-1",  data: { "turbolinks" => false } %>
-                <%= link_to "削除", 'javascript:void(0)', class: "btn btn-danger btn-sm", 'data-bs-toggle': "modal", 'data-bs-target': "#deleteModal" %>
-                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">削除確認</h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">削除しますか？</div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">やめる</button>
-                        <%= button_to "削除",post_path(@post),method: :delete, class: "btn btn-danger" %>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <%= link_to "削除", 'javascript:void(0)', class: "btn btn-danger btn-sm", 'data-bs-toggle': "modal", 'data-bs-target': "#PostdeleteModal" %>
               </div>
             <% end %>
+          </div>
+        </div>
+        <div class="modal fade" id="PostdeleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">削除確認</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">削除しますか？</div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">やめる</button>
+                <%= button_to "削除",post_path(@post),method: :delete, class: "btn btn-danger" %>
+              </div>
+            </div>
           </div>
         </div>
       </div>

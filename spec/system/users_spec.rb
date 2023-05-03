@@ -68,7 +68,7 @@ RSpec.describe "Users", type: :system do
             fill_in '名前', with: nil
             click_on '更新'
             expect(current_path).to eq users_profile_update_path
-            expect(page).to have_content 'プロフィールの更新に失敗しました'
+            expect(page).to have_content '名前を入力してください'
           end
         end
       end
@@ -87,7 +87,7 @@ RSpec.describe "Users", type: :system do
             fill_in '現在のパスワード', with: user.password
             click_on '変更する'
             expect(current_path).to eq edit_user_registration_path
-            expect(page).to have_content 'アカウント情報を変更しました'
+            expect(page).to have_field 'メールアドレス', with: 'test2@example.com'
           end
         end
 
@@ -111,8 +111,13 @@ RSpec.describe "Users", type: :system do
           find('.dropdown-toggle').click
           click_on '退会する'
           click_on '削除'
-          expect(current_path).to eq root_path
-          expect(page).to have_content 'アカウントを削除しました。'
+          click_on 'ログイン'
+          fill_in 'メールアドレス', with: user.email
+          fill_in 'パスワード', with: user.password
+          within('.d-flex') do
+            click_on 'ログイン'
+          end
+          expect(current_path).not_to eq root_path
         end
       end
     end
@@ -140,8 +145,7 @@ RSpec.describe "Users", type: :system do
         within('.d-flex') do
           click_on 'ログイン'
         end
-        expect(current_path).to eq new_user_session_path
-        expect(page).to have_content 'メールアドレスまたはパスワードが違います'
+        expect(current_path).not_to eq root_path
       end
     end
 

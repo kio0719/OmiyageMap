@@ -1,5 +1,9 @@
 version: 2.1
 
+orbs:
+  circleci-images: circleci/circleci-images@0.7.0
+  ruby: circleci/ruby@1.1.0
+
 jobs:
   test:
     docker:
@@ -9,12 +13,30 @@ jobs:
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
-      - image: circleci/mysql:5.7
+      - image: circleci/mysql:5.7.32
         environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_USER: root
           MYSQL_ROOT_PASSWORD: ''
+          MYSQL_DB: OmiyageSquare_test
     steps:
       - checkout
+      - ruby/install-deps
+      - run: sudo apt-get update
+      - circleci-images/install-chrome
+      - circleci-images/install-chromedriver
+      - run:
+          name: "Swap node versions"
+          command: |
+            set +e
+            wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+            nvm install v15.0
+            nvm alias default 15.0
+
+            echo 'export NVM_DIR="$HOME/.nvm"' >> $BASH_ENV
+            echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
       - run:
           name: "setup bundler"
           command: |
@@ -36,10 +58,18 @@ jobs:
           name: "wait database" 
           command: dockerize -wait tcp://localhost:3306 -timeout 1m
       - run:
+          name: "setup database"
+          command: |
+            cp -v config/database.ci.yml config/database.yml
+      - run:
           name: "initialise DB"
           command: |
             bundle exec rails db:create
             bundle exec rails db:migrate
+      - run:
+          name: "yarn Install"
+          command: yarn install
+      - run: bundle exec rails assets:precompile
       - run:
           name: Run rubocop
           command: bundle exec rubocop --parallel

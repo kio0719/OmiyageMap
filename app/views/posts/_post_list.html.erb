@@ -34,7 +34,7 @@
                 <% if user_signed_in? && post.user_id == current_user.id %>
                   <div class="btn-group">
                     <object><%= link_to "更新", [:edit, post], class: "btn btn-primary btn-sm me-3", data: { "turbolinks" => false } %></object>
-                    <object><%= link_to "削除", 'javascript:void(0)', class: "btn btn-danger btn-sm", 'data-bs-toggle': "modal", 'data-bs-target': "#deleteModal#{post.id}" %></object>
+                    <object><%= link_to "削除", 'javascript:void(0)', class: "btn btn-danger btn-sm", 'data-bs-toggle': "modal", 'data-bs-target': "#PostdeleteModal#{post.id}" %></object>
                   </div>
                 <% end %>
               </div>
@@ -53,7 +53,7 @@
         </div>
       </div>
     <% end %>
-    <div class="modal fade" id="deleteModal<%= post.id %>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal fade" id="PostdeleteModal<%= post.id %>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -65,7 +65,7 @@
           <div class="modal-body">削除しますか？</div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">やめる</button>
-            <%= button_to "削除",post_path(post),method: :delete, class: "btn btn-danger" %>
+            <%= link_to "削除", post_path(post), method: :delete, class: "btn btn-danger" %>
           </div>
         </div>
       </div>

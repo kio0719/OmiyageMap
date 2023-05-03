@@ -2,7 +2,7 @@ class Post < ApplicationRecord
   extend Geocoder::Model::ActiveRecord
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
-  
+
   belongs_to :user
   has_many_attached :images, dependent: :destroy
   has_many :likes, -> { order(created_at: :desc) }, dependent: :destroy
