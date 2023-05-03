@@ -1,42 +1,40 @@
-<div class="container my-5">
-  <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
-    <% if current_user.email == 'guest@example.com' %>
-      <div class="error-box text-center mb-4 mx-auto w-sm-75 w-md-50">ゲストユーザーはアカウント情報の編集ができません。</div>
-      <fieldset disabled >
-    <% end %>
-    <div class="card mb-4 mx-auto w-75">
-      <div class="card-header"><div class="ms-md-5">アカウント情報</div></div>
-      <div class="card-body mx-md-3 mt-3">
-        <div class = 'mb-4'>
-          <%= f.label :email, "メールアドレス", class: "form-label" %>
-          <%= f.email_field :email, autocomplete: "email", class: "form-control #{'is-invalid' if @user.errors['email'].any? }", placeholder: "xxx@email.com" %>
-          <%= render "shared/error", model: @user, attribute: :email %>
-        </div>
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-        <% end %>
-        <div class="mb-4">
-          <%= f.label :password, "パスワード変更", class: "form-label" %><i> (変更したい場合)</i>
-          <%= f.password_field :password, autocomplete: "new-password", class: "form-control #{'is-invalid' if @user.errors['password'].any? }", placeholder: "半角英数6文字以上" %>
-          <%= render "shared/error", model: @user, attribute: :password %>
-        </div>
-        <div class="mb-4">
-          <%= f.label :password_confirmation, "パスワード変更(確認)", class: "form-label" %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control #{'is-invalid' if @user.errors['password_confirmation'].any? }", placeholder: "再度ご入力ください" %>
-          <%= render "shared/error", model: @user, attribute: :password_confirmation %>
-        </div>
-        <div class="mb-4">
-          <%= f.label :current_password, class: "form-label" %> <i>(変更にはパスワードが必要です)</i><br />
-          <%= f.password_field :current_password, autocomplete: "current-password",class: "form-control #{'is-invalid' if @user.errors['current_password'].any? }", placeholder: "必須項目です" %>
-          <%= render "shared/error", model: @user, attribute: :current_password %>
-        </div>
+<%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+  <% if current_user.email == 'guest@example.com' %>
+    <div class="error-box text-center mb-4 mx-auto w-sm-75 w-md-50">ゲストユーザーはアカウント情報の編集ができません。</div>
+    <fieldset disabled >
+  <% end %>
+  <div class="card mb-4 mx-auto w-75">
+    <div class="card-header"><div class="ms-md-5">アカウント情報</div></div>
+    <div class="card-body mx-md-3 mt-3">
+      <div class = 'mb-4'>
+        <%= f.label :email, "メールアドレス", class: "form-label" %>
+        <%= f.email_field :email, autocomplete: "email", class: "form-control #{'is-invalid' if @user.errors['email'].any? }", placeholder: "xxx@email.com" %>
+        <%= render "shared/error", model: @user, attribute: :email %>
+      </div>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+      <div class="mb-4">
+        <%= f.label :password, "パスワード変更", class: "form-label" %><i> (変更したい場合)</i>
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control #{'is-invalid' if @user.errors['password'].any? }", placeholder: "半角英数6文字以上" %>
+        <%= render "shared/error", model: @user, attribute: :password %>
+      </div>
+      <div class="mb-4">
+        <%= f.label :password_confirmation, "パスワード変更(確認)", class: "form-label" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control #{'is-invalid' if @user.errors['password_confirmation'].any? }", placeholder: "再度ご入力ください" %>
+        <%= render "shared/error", model: @user, attribute: :password_confirmation %>
+      </div>
+      <div class="mb-4">
+        <%= f.label :current_password, class: "form-label" %> <i>(変更にはパスワードが必要です)</i><br />
+        <%= f.password_field :current_password, autocomplete: "current-password",class: "form-control #{'is-invalid' if @user.errors['current_password'].any? }", placeholder: "必須項目です" %>
+        <%= render "shared/error", model: @user, attribute: :current_password %>
       </div>
     </div>
-    <div class="d-flex justify-content-end w-75 mx-auto">
-      <%= f.submit "変更する", class: "btn btn-primary" %>
-    </div>
-    <% if current_user.email == 'guest@example.com' %>
-      </fieldset>
-    <% end %>
+  </div>
+  <div class="d-flex justify-content-end w-75 mx-auto">
+    <%= f.submit "変更する", class: "btn btn-primary" %>
+  </div>
+  <% if current_user.email == 'guest@example.com' %>
+    </fieldset>
   <% end %>
-</div>
+<% end %>

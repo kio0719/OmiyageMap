@@ -1,96 +1,94 @@
-<div class="container">
-  <div class="card my-5">
-    <div class="home-carousel mx-auto my-5">
-      <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel">
-        <ol class="carousel-indicators">
-          <% @randoms_count.times do |i| %>
-              <li data-bs-target="#carouselIndicators" data-bs-slide-to="<%= i %>" class="<%= ' active' if i==0 %>" ></li>
-          <% end %>
-        </ol>
-        <div class="carousel-inner">
-          <% @randoms.each_with_index do |post, i| %>
-            <div class="carousel-item<%= " active" if i == 0 %> ">
-              <%= image_tag post.images[0].variant(resize_to_limit: [800, 500]), class: "home-carousel-image d-block w-100" %>
-              <div class="carousel-caption d-done d-md-block carousel-font-area">
-                <%= link_to post_path(post.id) do %>
-                  <div class="carousel-font h3 fw-bold"><%= post.user.name %>さんの投稿</div>
-                  <div class="carousel-font h6 fw-bold" ><%= post.name %></div>
-                  <div class="carousel-font h6 fw-bold" ><%= post.created_at.to_s(:datetime_jp) %></div>
-                <% end %>
-              </div>
+<div class="card my-5">
+  <div class="home-carousel mx-auto my-5">
+    <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel">
+      <ol class="carousel-indicators">
+        <% @randoms_count.times do |i| %>
+            <li data-bs-target="#carouselIndicators" data-bs-slide-to="<%= i %>" class="<%= ' active' if i==0 %>" ></li>
+        <% end %>
+      </ol>
+      <div class="carousel-inner">
+        <% @randoms.each_with_index do |post, i| %>
+          <div class="carousel-item<%= " active" if i == 0 %> ">
+            <%= image_tag post.images[0].variant(resize_to_limit: [800, 500]), class: "home-carousel-image d-block w-100" %>
+            <div class="carousel-caption d-done d-md-block carousel-font-area">
+              <%= link_to post_path(post.id) do %>
+                <div class="carousel-font h3 fw-bold"><%= post.user.name %>さんの投稿</div>
+                <div class="carousel-font h6 fw-bold" ><%= post.name %></div>
+                <div class="carousel-font h6 fw-bold" ><%= post.created_at.to_s(:datetime_jp) %></div>
+              <% end %>
             </div>
-          <% end %>
+          </div>
+        <% end %>
+      </div>
+      <%= link_to "#carouselIndicators", class: "carousel-control-prev", "data-bs-slide": "prev", role: "button" do %>
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">前に戻る</span>
+      <% end %>
+      <%= link_to "#carouselIndicators", class: "carousel-control-next", "data-bs-slide": "next", role: "button" do %>
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">次に送る</span>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= search_form_for @q, url: root_path, local: true do |f| %>
+  <div class="row">
+    <div class="col-md-4 search-box mb-5">
+        <div class="h4 text-center mb-4">投稿検索</div>
+        <div class="d-flex justify-content-end mb-5 row">
+          <div class="col-lg-5 col-md-6 col-4"><%= f.select :sorts, {   '新規投稿順': 'updated_at desc', 'いいね!の多い順': 'likes_count desc' } , { selected: params[:q][:sorts] }, { onchange: 'this.form.submit()',class: 'form-select small'}  %></div>
+        </div>  
+        <div class="mb-2 d-flex justify-content-center">
+          <div class="w-75">
+            <div class="mb-3">
+              <%= f.search_field :name_or_address_or_caption_or_user_name_cont_any, class: 'form-control', placeholder: '商品名、場所、投稿内容、ユーザー名', value: params[:q][:name_or_address_or_caption_or_user_name_cont_any] %>
+            </div>
+            <div class="d-grid d-block">
+              <%= f.submit '検索', class: 'btn btn-primary' %>
+            </div>
+          </div>
         </div>
-        <%= link_to "#carouselIndicators", class: "carousel-control-prev", "data-bs-slide": "prev", role: "button" do %>
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">前に戻る</span>
-        <% end %>
-        <%= link_to "#carouselIndicators", class: "carousel-control-next", "data-bs-slide": "next", role: "button" do %>
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">次に送る</span>
-        <% end %>
+        <div class="d-flex justify-content-end pb-5 border-bottom border-grey">
+          <%= link_to "絞り込み検索", 'javascript:void(0)', 'data-bs-toggle': "modal", 'data-bs-target': "#detailModal" %>
+        </div>
+      <div class="w-75 mx-auto mb-5 mt-2">全<%= @count %>件</div>
+    </div>
+    <div class="col-md-8">
+      <%= render "posts/post_list", posts: @results %>
+    </div>
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">絞り込み検索</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mb-5">
+            <%= f.label :name_cont, 'おみやげ名', class: 'col-form-label' %>
+            <%= f.search_field :name_cont, placeholder: "おみやげ名", class: 'form-control mb-2' %>
+            <%= f.label :address, '購入したお店', class: 'col-form-label' %>
+            <%= f.search_field :address_cont, placeholder: "購入したお店", class: 'form-control mb-2' %>
+            <%= f.label :content, 'おみやげ感想', class: 'col-form-label' %>
+            <%= f.search_field :caption_cont, placeholder: "おみやげ感想", class: 'form-control mb-2' %>
+            <%= f.label :user_name_cont, 'ユーザー名', class: 'col-form-label' %>
+            <%= f.search_field :user_name_cont, placeholder: "ユーザー名", class: 'form-control mb-2' %>
+            <%= f.label :created_at_gteq, '投稿期間', class: 'col-form-label' %>
+            <%= f.date_field :created_at_gteq, class: 'form-control mb-2' %>
+            <div class="text-center">〜</div>
+            <%= f.date_field :created_at_lteq_end_of_day, class: 'form-control mb-2' %>
+          </div>
+          <div class="modal-footer d-flex justify-content-between">
+            <button type="button" class="btn  btn-outline-dark" data-bs-dismiss="modal">やめる</button>
+            <div class="btn-group">
+              <button type="button" class="btn btn-outline-success" id="reset-button">リセット</button>
+              <%= f.submit '詳細検索', class: 'btn btn-primary' %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <%= search_form_for @q, url: root_path, local: true do |f| %>
-    <div class="row">
-      <div class="col-md-4 search-box mb-5">
-          <div class="h4 text-center mb-4">投稿検索</div>
-          <div class="d-flex justify-content-end mb-5 row">
-            <div class="col-lg-5 col-md-6 col-4"><%= f.select :sorts, {   '新規投稿順': 'updated_at desc', 'いいね!の多い順': 'likes_count desc' } , { selected: params[:q][:sorts] }, { onchange: 'this.form.submit()',class: 'form-select small'}  %></div>
-          </div>  
-          <div class="mb-2 d-flex justify-content-center">
-            <div class="w-75">
-              <div class="mb-3">
-                <%= f.search_field :name_or_address_or_caption_or_user_name_cont_any, class: 'form-control', placeholder: '商品名、場所、投稿内容、ユーザー名', value: params[:q][:name_or_address_or_caption_or_user_name_cont_any] %>
-              </div>
-              <div class="d-grid d-block">
-                <%= f.submit '検索', class: 'btn btn-primary' %>
-              </div>
-            </div>
-          </div>
-          <div class="d-flex justify-content-end pb-5 border-bottom border-grey">
-            <%= link_to "絞り込み検索", 'javascript:void(0)', 'data-bs-toggle': "modal", 'data-bs-target': "#detailModal" %>
-          </div>
-        <div class="w-75 mx-auto mb-5 mt-2">全<%= @count %>件</div>
-      </div>
-      <div class="col-md-8">
-        <%= render "posts/post_list", posts: @results %>
-      </div>
-      <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">絞り込み検索</h5>
-              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body mb-5">
-              <%= f.label :name_cont, 'おみやげ名', class: 'col-form-label' %>
-              <%= f.search_field :name_cont, placeholder: "おみやげ名", class: 'form-control mb-2' %>
-              <%= f.label :address, '購入したお店', class: 'col-form-label' %>
-              <%= f.search_field :address_cont, placeholder: "購入したお店", class: 'form-control mb-2' %>
-              <%= f.label :content, 'おみやげ感想', class: 'col-form-label' %>
-              <%= f.search_field :caption_cont, placeholder: "おみやげ感想", class: 'form-control mb-2' %>
-              <%= f.label :user_name_cont, 'ユーザー名', class: 'col-form-label' %>
-              <%= f.search_field :user_name_cont, placeholder: "ユーザー名", class: 'form-control mb-2' %>
-              <%= f.label :created_at_gteq, '投稿期間', class: 'col-form-label' %>
-              <%= f.date_field :created_at_gteq, class: 'form-control mb-2' %>
-              <div class="text-center">〜</div>
-              <%= f.date_field :created_at_lteq_end_of_day, class: 'form-control mb-2' %>
-            </div>
-            <div class="modal-footer d-flex justify-content-between">
-              <button type="button" class="btn  btn-outline-dark" data-bs-dismiss="modal">やめる</button>
-              <div class="btn-group">
-                <button type="button" class="btn btn-outline-success" id="reset-button">リセット</button>
-                <%= f.submit '詳細検索', class: 'btn btn-primary' %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
-</div>
+<% end %>
 <%= javascript_pack_tag "reset" %>

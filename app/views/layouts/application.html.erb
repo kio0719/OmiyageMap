@@ -10,12 +10,12 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
     <%= render "shared/header" %>
-    <%= yield %>
+    <div class="container my-5 min-vh-100">
+      <%= yield %>
+    </div>
     <%= render "shared/footer" %>
-
     <% flash.each do |type, msg| %>
       <% type = 'info' if type == 'notice' %>
       <% type = 'error' if type == 'alert' %>

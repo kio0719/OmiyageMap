@@ -1,49 +1,47 @@
-<div class="container my-5"> 
-  <%= form_with model: @user, url: users_profile_update_path do |f| %>
-    <% if current_user.email == 'guest@example.com' %>
-      <div class="error-box text-center mb-4 mx-auto w-sm-75 w-md-50">ゲストユーザーはプロフィール編集ができません。</div>
-      <fieldset disabled >
-    <% end %>
-    <div class="card mb-4 mx-auto w-75">
-      <div class="card-header"><div class="ms-md-5">プロフィール編集</div></div>
-      <div class="card-body mx-md-3 mt-3">
-        <div class="row mb-5">
-          <div class="col-md-3">
-            <%= f.label :name, "名前", class: "form-label" %>
-          </div>
-          <div class="col-md-8">
-            <%= f.text_field :name, class: "form-control #{'is-invalid' if @user.errors['name'].any? }" %>
-            <%= render "shared/error", model: @user, attribute: :name %>
-          </div>
-        </div>
-        <div class="row mb-5">
-          <div class="col-md-3">
-            <%= f.label :introduction, "自己紹介", class: "form-label" %>
-          </div>
-          <div class="col-md-8">
-            <%= f.text_area :introduction, class: "form-control #{'is-invalid' if @user.errors['introduction'].any? }", rows: 8 %>
-            <%= render "shared/error", model: @user, attribute: :introduction %>
-          </div>
-        </div>
-        <div class="row mb-5">
-          <div class="col-md-3">
-            <%= f.label :icon, "アイコン画像", class: "form-label" %>
-          </div>
-          <div class="col-md-8">
-            <%= f.file_field :icon, class: "form-control #{'is-invalid' if @user.errors['icon'].any? }" %>
-            <%= render "shared/error", model: @user, attribute: :icon %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <% if current_user.email == 'guest@example.com' %>
-      </fieldset>
-    <% end %>
-    <div class="d-flex justify-content-end w-75 mx-auto">
-      <div>
-        <%= link_to 'プロフィール画面に戻る', users_profile_path(current_user), class: "btn btn-outline-dark me-3", data: { "turbolinks" => false } %>
-        <%= f.submit "更新", class: "btn btn-primary #{' disabled' if current_user.email == 'guest@example.com' }" %>
-      </div>
-    </div>
+<%= form_with model: @user, url: users_profile_update_path do |f| %>
+  <% if current_user.email == 'guest@example.com' %>
+    <div class="error-box text-center mb-4 mx-auto w-sm-75 w-md-50">ゲストユーザーはプロフィール編集ができません。</div>
+    <fieldset disabled >
   <% end %>
-</div>
+  <div class="card mb-4 mx-auto w-75">
+    <div class="card-header"><div class="ms-md-5">プロフィール編集</div></div>
+    <div class="card-body mx-md-3 mt-3">
+      <div class="row mb-5">
+        <div class="col-md-3">
+          <%= f.label :name, "名前", class: "form-label" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_field :name, class: "form-control #{'is-invalid' if @user.errors['name'].any? }" %>
+          <%= render "shared/error", model: @user, attribute: :name %>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-md-3">
+          <%= f.label :introduction, "自己紹介", class: "form-label" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_area :introduction, class: "form-control #{'is-invalid' if @user.errors['introduction'].any? }", rows: 8 %>
+          <%= render "shared/error", model: @user, attribute: :introduction %>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-md-3">
+          <%= f.label :icon, "アイコン画像", class: "form-label" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.file_field :icon, class: "form-control #{'is-invalid' if @user.errors['icon'].any? }" %>
+          <%= render "shared/error", model: @user, attribute: :icon %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% if current_user.email == 'guest@example.com' %>
+    </fieldset>
+  <% end %>
+  <div class="d-flex justify-content-end w-75 mx-auto">
+    <div>
+      <%= link_to 'プロフィール画面に戻る', users_profile_path(current_user), class: "btn btn-outline-dark me-3", data: { "turbolinks" => false } %>
+      <%= f.submit "更新", class: "btn btn-primary #{' disabled' if current_user.email == 'guest@example.com' }" %>
+    </div>
+  </div>
+<% end %>
