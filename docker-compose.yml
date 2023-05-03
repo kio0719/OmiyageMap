@@ -1,0 +1,46 @@
+version: "3"
+volumes:
+  mysql_data:
+  vendor_bundle:
+  node_modules:
+  public_spree:
+  storage:
+
+services:
+  mysql:
+    image: mysql:5.7
+    platform: linux/amd64
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    networks:
+      - default
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+  omiyagesquare:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - '3000:3000'
+    environment:
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: password
+      MYSQL_HOST: mysql
+    depends_on:
+      - mysql
+    networks:
+      - default
+    volumes:
+      - .:/omiyagesquare
+      - /omiyagesquare/log
+      - /omiyagesquare/tmp
+      - vendor_bundle:/omiyagesquare/vendor/bundle
+      - node_modules:/omiyagesquare/node_modules
+      - public_spree:/omiyagesquare/public/spree
+      - storage:/omiyagesquare/storage
+    tty: true
+    stdin_open: true
+    command: bundle exec rails server -b 0.0.0.0
