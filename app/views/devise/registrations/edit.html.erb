@@ -4,9 +4,9 @@
     <fieldset disabled >
   <% end %>
   <div class="card mb-4 mx-auto w-75">
-    <div class="card-header"><div class="ms-md-5">アカウント情報</div></div>
+    <div class="card-header"><div class="ms-md-3 lead">アカウント情報</div></div>
     <div class="card-body mx-md-3 mt-3">
-      <div class = 'mb-4'>
+      <div class="mb-4">
         <%= f.label :email, "メールアドレス", class: "form-label" %>
         <%= f.email_field :email, autocomplete: "email", class: "form-control #{'is-invalid' if @user.errors['email'].any? }", placeholder: "xxx@email.com" %>
         <%= render "shared/error", model: @user, attribute: :email %>
@@ -25,7 +25,7 @@
         <%= render "shared/error", model: @user, attribute: :password_confirmation %>
       </div>
       <div class="mb-4">
-        <%= f.label :current_password, class: "form-label" %> <i>(変更にはパスワードが必要です)</i><br />
+        <%= f.label :current_password, class: "form-label" %><i>(変更にはパスワードが必要です)</i><br />
         <%= f.password_field :current_password, autocomplete: "current-password",class: "form-control #{'is-invalid' if @user.errors['current_password'].any? }", placeholder: "必須項目です" %>
         <%= render "shared/error", model: @user, attribute: :current_password %>
       </div>
