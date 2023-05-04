@@ -34,7 +34,6 @@ jobs:
             [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
             nvm install v15.0
             nvm alias default 15.0
-
             echo 'export NVM_DIR="$HOME/.nvm"' >> $BASH_ENV
             echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
       - run:
@@ -77,8 +76,21 @@ jobs:
           name: RSpec
           command: bundle exec rspec
 
+  deploy:
+    machine:
+      image: ubuntu-2004:2023.04.2
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "${KEY_FINGERPRINT}"
+      - run: ssh -o StrictHostKeyChecking=no ${USER_NAME}@${HOST_NAME} "cd ${HOST_DIR} && git pull origin ${CIRCLE_BRANCH}"
+      
 workflows:
   version: 2.1
   workflows:
     jobs:
       - test
+      - deploy:
+          requires:
+            - test
