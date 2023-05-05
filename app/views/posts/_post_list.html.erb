@@ -1,28 +1,28 @@
 <% if posts.present? %>
   <% posts.each do |post| %>
     <%= link_to post, data: { "turbolinks" => false } do %>
-      <div class="post-item card mb-5 w-85 mx-auto <%= " ms-md-auto me-md-0" if  current_page?(root_path) %>">
+      <div class="post-item card mb-5 w-85 mx-auto <%= "ms-md-auto me-md-0" if current_page?(root_path) %>">
         <div class="card-header bg-transparent">
           <div class="row">
             <div class="col-md-2">
               <div class="fit-content mx-auto">
-              <object>
-                <%= link_to users_profile_path(post.user) do %>
-                  <div class="text-center">
-                    <% if post.user.icon.attached? %>
-                      <%= image_tag post.user.icon.variant(resize_to_limit: [200, 200]), class: "sm-circle-image" %>
-                    <% else %>
-                      <%= image_tag ("icon.png"), size: '200x200', class: "sm-circle-image"  %>
-                    <% end %>
-                  </div>
-                  <div class="text-center"><%= post.user.name %></div>
-                <% end %>
-              </object>
+                <object>
+                  <%= link_to users_profile_path(post.user) do %>
+                    <div class="text-center">
+                      <% if post.user.icon.attached? %>
+                        <%= image_tag post.user.icon.variant(resize_to_limit: [200, 200]), class: "sm-circle-image" %>
+                      <% else %>
+                        <%= image_tag ("icon.png"), size: '200x200', class: "sm-circle-image" %>
+                      <% end %>
+                    </div>
+                    <div class="text-center"><%= truncate(post.user.name, length: 10) %></div>
+                  <% end %>
+                </object>
               </div>
             </div>
             <div class="col-md-10 text-center text-md-start">
               <div><%= post.name %></div>
-              <div><%= post.address %></div>
+              <div><%= truncate(post.address, length: 20) %></div>
               <div class="d-flex justify-content-between">
                 <div><%= post.updated_at.to_s(:datetime_jp) %></div>
                 <div><%= time_ago_in_words(post.created_at) %>前</div>
@@ -57,7 +57,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">削除確認</h5>
+            <h5 class="modal-title">削除確認</h5>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>

@@ -5,7 +5,7 @@
         <% if comment.user.icon.attached? %>
           <%= image_tag comment.user.icon.variant(resize_to_limit: [200, 200]), class: "sm-circle-image" %>
         <% else %>
-          <%= image_tag ("icon.png"), size: '200x200', class: "sm-circle-image"  %>
+          <%= image_tag ("icon.png"), size: '200x200', class: "sm-circle-image" %>
         <% end %>
       </div>
     </div>
@@ -20,7 +20,7 @@
       <div><%= comment.comment %></div>
       <% if comment.user == current_user %>
         <div class="comment_btn d-flex flex-row-reverse">
-          <%= link_to "削除", 'javascript:void(0)', 'data-bs-toggle': "modal", 'data-bs-target': "#CommentdeleteModal#{comment.id}" %>
+          <%= link_to "削除", "javascript:void(0)", "data-bs-toggle": "modal", "data-bs-target": "#CommentdeleteModal#{comment.id}" %>
         </div>
       <% end %>
     </div>
@@ -29,7 +29,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">削除確認</h5>
+          <h5 class="modal-title">削除確認</h5>
           <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -37,7 +37,7 @@
         <div class="modal-body">削除しますか？</div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">やめる</button>
-          <%= button_to "削除",post_comment_path(comment.post, comment),method: :delete, class: "btn btn-danger", data: { "turbolinks" => false } %>
+          <%= button_to "削除", post_comment_path(comment.post, comment), method: :delete, class: "btn btn-danger", data: { "turbolinks" => false } %>
         </div>
       </div>
     </div>
