@@ -68,7 +68,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'geocoder'
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data'
 gem 'devise'
 gem 'devise-i18n'
 gem 'rails-i18n'
@@ -78,4 +78,4 @@ gem "net-http"
 gem 'font-awesome-sass'
 gem 'kaminari'
 gem 'bootstrap5-kaminari-views'
-gem 'ransack'
+gem 'ransack', '3.2.1'
